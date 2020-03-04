@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import bookdata from '../../dataaccess/books.json';
+
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  selector: 'books-list',
+  templateUrl: './books.component.html'
 })
-export class BooksComponent implements OnInit {
 
+export class BooksComponent implements OnInit {
+  books: any = bookdata
   constructor() { }
 
   ngOnInit(): void {

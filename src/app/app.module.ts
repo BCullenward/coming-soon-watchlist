@@ -7,6 +7,7 @@ import { BooksComponent } from './books/books.component';
 import { MusicComponent } from './music/music.component';
 import { WatchlistAppComponent } from './watchlist-app.component';
 import { GamesListComponent } from './games/games-list.component';
+import { TvshowsComponent } from './tvshows/tvshows.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { GamesListComponent } from './games/games-list.component';
     MoviesComponent,
     BooksComponent,
     MusicComponent,
-    GamesListComponent
+    GamesListComponent,
+    TvshowsComponent
   ],
   bootstrap: [WatchlistAppComponent]
 })

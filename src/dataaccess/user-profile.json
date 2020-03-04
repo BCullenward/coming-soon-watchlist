@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "firstname": "Steve",
+    "lastname": "Norbit",
+    "email": "steve.noway@myemail.com",
+    "location": {
+      "city": "Dallas",
+      "state": "TX",
+      "country": "USA"
+    }
+  },
+  {
+    "id": 2,
+    "firstname": "Portly",
+    "lastname": "Pigg",
+    "email": "thatsallfolks@gmail.com",
+    "location": {
+      "city": "London",
+      "country": "UK"
+    }
+  },
+  {
+    "id": 3,
+    "firstname": "Gertrude",
+    "lastname": "Fently",
+    "email": "FentlyPark@gmail.com",
+    "location": {
+      "city": "Berlin",
+      "country": "Germany"
+    }
+  }
+]

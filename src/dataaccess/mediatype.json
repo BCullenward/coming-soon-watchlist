@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "description": "Books",
+    "subtype": [
+        {
+          "subid": 1010,
+          "description": "author"
+        },
+        {
+          "subid": 1020,
+          "description": "publisher"
+        },
+        {
+          "subid": 1030,
+          "description": "title"
+        },
+        {
+          "subid": 1040,
+          "description": "genre"
+        }
+      ]
+  },
+  {
+    "id": 2,
+    "description": "Video Games",
+    "system": [
+      {
+        "systemid": 100,
+        "systemname": "Nintendo Switch"
+      },
+      {
+        "systemid": 200,
+        "systemname": "Playstation 4"
+      },
+      {
+        "systemid": 300,
+        "systemname": "XBox One"
+      }
+    ],
+    "subtype": [
+        {
+          "subid": 2020,
+          "description": "title"
+        },
+        {
+          "subid": 2030,
+          "description": "genre"
+        }
+      ]
+  },
+  {
+    "id": 3,
+    "description": "Movies"
+  },
+  {
+    "id": 4,
+    "description": "Music"
+  },
+  {
+    "id": 5,
+    "description": "TV Shows"
+  }
+]

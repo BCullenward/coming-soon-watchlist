@@ -1,1 +1,18 @@
-<p>books works!</p>
+<div>
+  <p>books works!</p>
+  <h2>Books</h2>
+  <br />
+  <br />
+  <h5>Powered by Google Books API.  Please re-enable.  1000 hits a day limit and 100 an hour.</h5>
+  <br />
+  <div>
+    Hello darling.
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let book of books">
+        <h2>{{book.volumeInfo.title}}</h2>
+      </li>
+    </ul>
+  </div>
+</div>
