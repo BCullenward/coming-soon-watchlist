@@ -8,16 +8,17 @@ import { MusicComponent } from './music/music.component';
 import { WatchlistAppComponent } from './watchlist-app.component';
 import { GamesListComponent } from './games/games-list.component';
 import { TvshowsComponent } from './tvshows/tvshows.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatCardModule } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
+import { BookService } from './books/shared/book.service';
+import { ToastrService } from './common/toastr.service';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { appRoutes } from './routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule
+    RouterModule.forRoot(appRoutes),
   ],
   declarations: [
     WatchlistAppComponent,
@@ -29,7 +30,12 @@ import { NavComponent } from './nav/nav.component';
     GamesListComponent,
     TvshowsComponent,
     BookThumbnailComponent,
-    NavComponent
+    NavComponent,
+    BookDetailsComponent
+  ],
+  providers: [
+    BookService,
+    ToastrService
   ],
   bootstrap: [WatchlistAppComponent]
 })

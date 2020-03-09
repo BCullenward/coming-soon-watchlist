@@ -1,0 +1,72 @@
+[
+  {
+    "userid": 1,
+    "watchlist": [
+      {
+        "books": [
+          {
+            "id": "BdZjCAAAQBAJ"
+          },
+          {
+            "id": "iSrI-BQqFf0C"
+          }
+        ],
+        "movies": [
+          {
+            "id": "tt657"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "books": [
+          {
+            "author": "Ellison"
+          },
+          {
+            "author": "King"
+          },
+          {
+            "genre": "Science Fiction"
+          }
+        ],
+        "movies": [
+          {
+            "actor": "Buscemi"
+          },
+          {
+            "director": "Charlie Kaufman"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userid": 2,
+    "watchlist": [
+      {
+        "books": [
+          {
+            "id": "BdZjCAAAQBAJ"
+          },
+          {
+            "id": "300xmkv0uxEC"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userid": 3,
+    "watchlist": [
+      {
+        "movies": [
+          {
+            "id": "tt9990"
+          }
+        ]
+      }
+    ]
+  }
+]

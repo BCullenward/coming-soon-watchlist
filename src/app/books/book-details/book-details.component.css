@@ -1,0 +1,17 @@
+.container {
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.empty {
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.book-image {
+    height: 400px;
+}
+
+.pad-bottom {
+    padding-bottom:100px;
+}

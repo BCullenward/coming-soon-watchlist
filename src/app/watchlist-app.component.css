@@ -1,0 +1,25 @@
+.hoverwell:hover {
+  background-color: #535353;
+  cursor: pointer;
+}
+
+.hoverwell {
+  background-color: #696969;
+}
+
+.thumbnail {
+  padding-bottom: 0px;
+}
+
+.well {
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+  .well div {
+    color: #bbb;
+  }
+
+.container {
+  padding-top: 10px;
+}
