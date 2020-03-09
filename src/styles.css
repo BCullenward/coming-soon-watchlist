@@ -1,7 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 .hoverwell:hover {
-  background-color: #485563;
+  background-color: #285563;
   cursor: pointer;
+}
+
+.thumbnail {
+    padding-bottom: 0px;
+}
+
+.well {
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.well div {
+    color: #bbb;
 }
 
 .container {
@@ -35,3 +48,65 @@ button {
 .toast-warning {
   background-color: #f89406;
 }
+
+th, td {
+    vertical-align: middle;
+    padding-bottom: 5px;
+}
+
+.page-title-font {
+  font-size: 40px;
+}
+
+.header {
+  position: relative;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #666666;
+  /*background-color: #2b5e96;*/
+  /*color: #2b3e50;*/
+  color: white;
+  font-weight: 600;
+  width: 100%;
+}
+
+.toolbar {
+  position: relative;
+  top: 0px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+  width: 100%
+}
+
+.header-smaller {
+  font-size: 10px;
+}
+
+.header-font {
+  font-size: 25px;
+}
+
+.title-font {
+  font-size: 40px;
+}
+
+.content {
+  margin-top: 17px;
+}
+
+html, body {
+  height: 100%;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

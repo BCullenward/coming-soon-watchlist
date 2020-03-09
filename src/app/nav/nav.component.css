@@ -1,0 +1,22 @@
+.nav.navbar-nav {
+    font-size: 15px;
+}
+
+.navbar {
+  background-color: #555;
+}
+
+.btn {
+  background-color: #777;
+}
+
+#searchForm {
+    margin-right: 100px;
+}
+
+@media (max-width: 1200px) {
+  #searchForm {
+    display: none
+  }
+}
+

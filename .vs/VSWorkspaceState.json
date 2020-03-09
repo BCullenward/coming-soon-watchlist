@@ -3,10 +3,10 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\games",
-    "\\src\\assets",
-    "\\src\\assets\\img"
+    "\\src\\app\\books",
+    "\\src\\assets\\img",
+    "\\src\\dataaccess"
   ],
-  "SelectedNode": "\\src\\app\\watchlist-app.component.css",
+  "SelectedNode": "\\src\\app\\books\\book-thumbnail.component.ts",
   "PreviewInSolutionExplorer": false
 }

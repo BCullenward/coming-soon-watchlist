@@ -1,0 +1,35 @@
+<!--<div class="well hoverwell thumbnail">
+  <mat-card style="margin-top:10px; width: 50%;">
+    <img src="{{book?.imageLinks.thumbnail}}" />
+    <mat-card-content>
+      <h2>{{book.volumeInfo.title}}</h2>
+      <div>Author: {{book.volumeInfo.authors}}</div>
+      <div>Published Date: {{book.volumeInfo.publishedDate | date:'shortDate'}}</div>
+      <div>Categories: {{book.volumeInfo.categories}}</div>
+      <div *ngIf="book.volumeInfo.averageRating">Avg. Rating {{book.volumeInfo?.averageRating}}</div>
+      <div *ngIf="book.volumeInfo.ratingsCount">Ratings: {{book.volumeInfo?.ratingsCount}}</div>
+    </mat-card-content>
+  </mat-card>
+</div>-->
+<div *ngFor="let book of books">
+  <div class="well hoverwell thumbnail">
+    <table class="table table-compact">
+      <!--<thead>-->
+      <tr>
+        <td scope="col" width="10%" valign="middle">
+          <img src="{{book?.imageLinks.smallThumbnail}}" />
+        </td>
+        <td scope="col" valign="middle">
+          <h2>{{book.volumeInfo.title}}</h2>
+          <div>Author: {{book.volumeInfo.authors}}</div>
+          <div>Published Date: {{book.volumeInfo.publishedDate | date:'shortDate'}}</div>
+          <div>Categories: {{book.volumeInfo.categories}}</div>
+          <div *ngIf="book.volumeInfo.averageRating">Avg. Rating {{book.volumeInfo?.averageRating}}</div>
+          <div *ngIf="book.volumeInfo.ratingsCount">Ratings: {{book.volumeInfo?.ratingsCount}}</div>
+        </td>
+      </tr>
+      <!--</thead>-->
+    </table>
+  </div>
+</div>
+
