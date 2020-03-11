@@ -1,0 +1,41 @@
+.nav.navbar-nav {
+  font-size: 15px;
+}
+
+.navbar {
+  background-color: #555;
+}
+
+.btn {
+  background-color: #777;
+}
+
+#searchForm {
+  margin-right: 100px;
+}
+
+@media (max-width: 1200px) {
+  #searchForm {
+    display: none;
+  }
+}
+
+li > a.active {
+  font-weight: bold;
+  color: #8967c4;
+}
+
+.toolbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+  width: 100%
+}

@@ -53,21 +53,6 @@ th, td {
   width: 100%;
 }
 
-.toolbar {
-  position: relative;
-  top: 0px;
-  left: 0;
-  right: 0;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 600;
-  width: 100%
-}
-
 .header-smaller {
   font-size: 10px;
 }

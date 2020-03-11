@@ -3,36 +3,23 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a [routerLink]="['/books']">All Books</a>
+          <a [routerLink]="['/books']"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">Books</a>
         </li>
-        <li><a href="">Add Book</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Books
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="">Your Book</a>
-            </li>
-          </ul>
+        <li>
+          <a [routerLink]="['/games']"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">Games</a>
         </li>
       </ul>
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
-            <a>Welcome User</a>
+            <a [routerLink]="['users/profile']">Welcome User</a>
           </li>
         </ul>
       </div>
-      <form id="searchForm" class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Books">
-        </div>
-        <button class="btn btn-default">
-          Search
-        </button>
-      </form>
     </div>
   </div>
 </div>

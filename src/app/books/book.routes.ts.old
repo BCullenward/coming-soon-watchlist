@@ -1,0 +1,22 @@
+import {
+  BooksHeaderComponent,
+  AddBookWatchitemComponent,
+  BooksResolver,
+  BookDetailsComponent,
+  BookRouteActivator
+} from './index';
+
+export const bookRoutes = [
+  {
+    path: '',
+    component: BooksHeaderComponent,
+    resolve: { books: BooksResolver },
+    children: [
+      { path: 'new', component: AddBookWatchitemComponent, canDeactivate: ['canDeactivateAddBook'] },
+      { path: ':id', component: BookDetailsComponent, canActivate: [BookRouteActivator] }
+    ]
+  }
+  //{ path: 'new', component: AddBookWatchitemComponent, canDeactivate: ['canDeactivateAddBook'] },
+  //{ path: '', component: BooksHeaderComponent, resolve: { books: BooksResolver } },
+  //{ path: ':id', component: BookDetailsComponent, canActivate: [BookRouteActivator] },
+]

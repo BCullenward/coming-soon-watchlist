@@ -1,17 +1,20 @@
 import bookdata from '../../../dataaccess/books.json';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BookService {
   getBooks() {
-    return books;
+    let subject = new Subject();
+    setTimeout(() => { subject.next(BOOKS); subject.complete(); }, 100);
+    return subject;
   }
 
   getBook(id: string) {
-    return books.find(book => book.id === id);
+    return BOOKS.find(book => book.id === id);
   }
 
 }
 
-const books: any = bookdata;
+const BOOKS: any = bookdata;
 
