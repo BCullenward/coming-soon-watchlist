@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BookRouteActivator,
-  //BooksResolver,
   AddBookWatchitemComponent,
   BooksComponent,
   BookThumbnailComponent,
   BookDetailsComponent,
   NavBooksComponent,
-  BooksHeaderComponent
+  BooksHeaderComponent,
+  MyBookWatchitemsComponent
 } from './index';
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksResolver } from './books-resolver.service';
@@ -25,7 +25,8 @@ import { BooksResolver } from './books-resolver.service';
     BookThumbnailComponent,
     BookDetailsComponent,
     AddBookWatchitemComponent,
-    BooksHeaderComponent
+    BooksHeaderComponent,
+    MyBookWatchitemsComponent
   ],
   providers: [
     BookRouteActivator,

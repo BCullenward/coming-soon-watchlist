@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IBook } from '../shared/index';
 
 @Component({
   selector: 'book-thumbnail',
@@ -6,11 +7,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./book-thumbnail.component.css', '../../watchlist-app.component.css']
 })
 export class BookThumbnailComponent implements OnInit {
-  @Input() book: any;
+  @Input() book: IBook;
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   getMaturityRating() {

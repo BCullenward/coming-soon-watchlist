@@ -8,6 +8,7 @@ import {
   BooksComponent
 } from './index';
 import { BooksResolver } from './books-resolver.service';
+import { MyBookWatchitemsComponent } from './book-watchlist/my-book-watchitems.component';
 
 const bookRoutes: Routes = [
   {
@@ -17,6 +18,7 @@ const bookRoutes: Routes = [
     children: [
       { path: '', component: BooksComponent },
       { path: 'new', component: AddBookWatchitemComponent, canDeactivate: ['canDeactivateAddBook'] },
+      { path: 'mybooks', component: MyBookWatchitemsComponent },
       { path: ':id', component: BookDetailsComponent, canActivate: [BookRouteActivator] }
     ]
   }];

@@ -3,20 +3,40 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a [routerLink]="['/books']"
+          <a [routerLink]="['./books']"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">Books</a>
         </li>
         <li>
-          <a [routerLink]="['/games']"
+          <a [routerLink]="['./games']"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">Games</a>
+        </li>
+        <li>
+          <a [routerLink]="['./movies']"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">Movies</a>
+        </li>
+        <li>
+          <a [routerLink]="['./music']"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">Music</a>
+        </li>
+        <li>
+          <a [routerLink]="['./tvshows']"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">TV Shows</a>
         </li>
       </ul>
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
-            <a [routerLink]="['users/profile']">Welcome User</a>
+            <a *ngIf="!auth.isAuthenticated()" [routerLink]="['./users/login']"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact:true}">Login</a>
+          </li>
+          <li>
+            <a *ngIf="auth.isAuthenticated()" [routerLink]="['./users/profile']">Welcome {{ auth.currentUser.firstname }}</a>
           </li>
         </ul>
       </div>

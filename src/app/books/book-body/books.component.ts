@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '.././index';
 import { ToastrService } from '../../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
+import { IBook } from '../shared/index';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class BooksComponent implements OnInit {
-  books: any;
+  books: IBook[];
 
   constructor(
     private toastr: ToastrService,

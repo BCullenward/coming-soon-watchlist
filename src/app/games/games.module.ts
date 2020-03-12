@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GameBodyComponent } from './game-body/game-body.component';
+import { GameDetailsComponent } from './game-details/game-details.component';
+import { GameHeaderComponent } from './game-header/game-header.component';
+import { GameThumbnailComponent } from './game-thumbnail/game-thumbnail.component';
+import { GameWatchlistComponent } from './game-watchlist/game-watchlist.component';
+import { NavGamesComponent } from './nav-games/nav-games.component';
+import { SharedComponent } from './shared/shared.component';
+import { GamesRoutingModule } from './games-routing.module';
 //import {
 //  BookRouteActivator,
-//  //BooksResolver,
 //  AddBookWatchitemComponent,
 //  BooksComponent,
 //  BookThumbnailComponent,
@@ -16,9 +23,8 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
-    CommonModule
-    //,
-    //BooksRoutingModule
+    CommonModule,
+    GamesRoutingModule
   ],
   declarations: [
     //NavBooksComponent,
@@ -27,7 +33,13 @@ import { CommonModule } from '@angular/common';
     //BookDetailsComponent,
     //AddBookWatchitemComponent,
     //BooksHeaderComponent
-  ],
+  GameBodyComponent,
+    GameDetailsComponent,
+    GameHeaderComponent,
+    GameThumbnailComponent,
+    GameWatchlistComponent,
+    NavGamesComponent,
+    SharedComponent],
   providers: [
     //BookRouteActivator,
     //{

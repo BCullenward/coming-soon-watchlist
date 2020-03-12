@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'tvshows-list',
   templateUrl: './tvshows.component.html'
 })
-export class TvshowsComponent implements OnInit {
+export class TvShowsComponent implements OnInit {
 
   constructor() { }
 

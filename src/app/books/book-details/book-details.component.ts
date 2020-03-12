@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../shared/book.service';
 import { ActivatedRoute } from '@angular/router';
+import { IBook } from '../shared/index';
 
 @Component({
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  book: any;
+  book: IBook;
   ISBN13: string;
-  //authors: string[] = [];
+
   constructor(private bookService: BookService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {

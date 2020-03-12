@@ -1,5 +1,5 @@
 <div class="container">
-  <img [src]="book?.imageLinks?.thumbnail" [alt]="book?.volumeInfo?.title" class="book-image">
+  <img [src]="book?.volumeInfo?.imageLinks?.thumbnail" [alt]="book?.volumeInfo?.title" class="book-image">
 
   <div class="row">
     <div class="col-md-11">
@@ -33,9 +33,9 @@
         </div>
         <div *ngIf="book?.volumeInfo?.description"><strong>Description:</strong> {{book?.volumeInfo?.description}}</div>
       </div>
-    <div class="col-md-6" *ngIf="book?.seriesInfo?.bookDisplayNumber">
+    <div class="col-md-6" *ngIf="book?.volumeInfo?.seriesInfo?.bookDisplayNumber">
         <strong>Series Info:</strong><br />
-        <div><strong>Series Number:</strong> {{book?.seriesInfo?.bookDisplayNumber}}</div>
+        <div><strong>Series Number:</strong> {{book?.volumeInfo?.seriesInfo?.bookDisplayNumber}}</div>
     </div>
     <div class="pad-bottom"></div>
   </div>
