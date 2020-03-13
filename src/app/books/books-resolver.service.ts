@@ -6,11 +6,12 @@ import { AuthService } from '../users/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class BooksResolver implements Resolve<any> {
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService, private auth: AuthService) {
 
   }
 
   resolve() {
     return this.bookService.getBooks().pipe(map(books => books))
   }
+
 }

@@ -15,7 +15,6 @@ export class AuthService {
     userName = "Steve55";
 
     this.currentUser = this.getUserProfile(userName);
-    console.log('user: ', this.currentUser);
   }
 
   // builds user profile from two json files

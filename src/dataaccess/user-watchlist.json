@@ -1,7 +1,7 @@
 [
   {
     "userid": 1,
-    "watchlist": [
+    "watchlist":
       {
         "books": [
           {
@@ -16,9 +16,8 @@
             "id": "tt657"
           }
         ]
-      }
-    ],
-    "keywords": [
+      },
+    "keywords":
       {
         "books": [
           {
@@ -40,11 +39,10 @@
           }
         ]
       }
-    ]
   },
   {
     "userid": 2,
-    "watchlist": [
+    "watchlist":
       {
         "books": [
           {
@@ -55,11 +53,10 @@
           }
         ]
       }
-    ]
   },
   {
     "userid": 3,
-    "watchlist": [
+    "watchlist":
       {
         "movies": [
           {
@@ -67,6 +64,5 @@
           }
         ]
       }
-    ]
   }
 ]

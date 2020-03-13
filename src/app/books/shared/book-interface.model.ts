@@ -92,10 +92,6 @@ export interface IOffers {
   giftable?: boolean
 }
 
-export interface IUserWatchList {
-  userID?: number
-}
-
 export interface IVolumeSeries {
   seriesId?: string,
   seriesBookType?: string,
@@ -103,6 +99,6 @@ export interface IVolumeSeries {
 }
 
 export interface IIndustryIdentifiers {
-  type ?: string,
-  identifier ?: string
+  type?: string,
+  identifier?: string
 }
