@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Error404Component } from './errors/error404.component';
+import { MainComponent } from './main.component';
 
 export const appRoutes: Routes = [
   { path: '404', component: Error404Component },
@@ -8,7 +9,8 @@ export const appRoutes: Routes = [
   { path: 'games', loadChildren: () => import('./games/games.module').then(g => g.GamesModule) },
   { path: 'movies', loadChildren: () => import('./movies/movies.module').then(m => m.MoviesModule) },
   { path: 'music', loadChildren: () => import('./music/music.module').then(m => m.MusicModule) },
-  { path: 'tvshows', loadChildren: () => import('./tvshows/tvshows.module').then(t => t.TvShowsModule) }
+  { path: 'tvshows', loadChildren: () => import('./tvshows/tvshows.module').then(t => t.TvShowsModule) },
+  { path: '', component: MainComponent }
   //,
   //{ path: '', redirectTo: '/books', pathMatch: 'full' }
 ]

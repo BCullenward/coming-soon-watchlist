@@ -3,17 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   UserHeaderComponent,
   LoginComponent,
-  ProfileComponent
+  ProfileComponent,
+  RegisterProfileComponent
 } from './index';
+import { AdminGuard } from '../admin/admin.guard';
 
 const userRoutes: Routes = [
   {
     path: '',
     component: UserHeaderComponent,
     children: [
-      //{ path: '', component: UserComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent, canActivate: [AdminGuard] },
+      { path: 'register', component: RegisterProfileComponent }
     ]
   }];
 
@@ -21,4 +23,6 @@ const userRoutes: Routes = [
   imports: [RouterModule.forChild(userRoutes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule { }
+export class UserRoutingModule  {
+
+}

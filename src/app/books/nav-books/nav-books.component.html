@@ -7,7 +7,7 @@
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">All Books</a>
         </li>
-        <li>
+        <li *ngIf="auth.isAuthenticated()">
           <a [routerLink]="['./new']"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">Add Watchitem</a>
