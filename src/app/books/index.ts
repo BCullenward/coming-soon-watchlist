@@ -5,4 +5,5 @@ export * from './book-watchlist/index';
 export * from './book-details/index';
 export * from './shared/index';
 export * from './nav-books/index';
+export * from './book-addnewbook/index';
 

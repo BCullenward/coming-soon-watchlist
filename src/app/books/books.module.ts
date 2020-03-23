@@ -8,7 +8,8 @@ import {
   BookDetailsComponent,
   NavBooksComponent,
   BooksHeaderComponent,
-  MyBookWatchitemsComponent
+  MyBookWatchitemsComponent,
+  BookAddNewBookComponent
 } from './index';
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksResolver } from './books-resolver.service';
@@ -26,7 +27,8 @@ import { BooksResolver } from './books-resolver.service';
     BookDetailsComponent,
     AddBookWatchitemComponent,
     BooksHeaderComponent,
-    MyBookWatchitemsComponent
+    MyBookWatchitemsComponent,
+    BookAddNewBookComponent
   ],
   providers: [
     BookRouteActivator,

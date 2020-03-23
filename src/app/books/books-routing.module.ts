@@ -5,10 +5,11 @@ import {
   AddBookWatchitemComponent,
   BookDetailsComponent,
   BookRouteActivator,
-  BooksComponent
+  BooksComponent,
+  MyBookWatchitemsComponent,
+  BookAddNewBookComponent
 } from './index';
 import { BooksResolver } from './books-resolver.service';
-import { MyBookWatchitemsComponent } from './book-watchlist/my-book-watchitems.component';
 
 const bookRoutes: Routes = [
   {
@@ -19,6 +20,7 @@ const bookRoutes: Routes = [
       { path: '', component: BooksComponent },
       { path: 'new', component: AddBookWatchitemComponent, canDeactivate: ['canDeactivateAddBook'] },
       { path: 'mybooks', component: MyBookWatchitemsComponent },
+      { path: 'addbook', component: BookAddNewBookComponent } ,
       { path: ':id', component: BookDetailsComponent, canActivate: [BookRouteActivator] }
     ]
   }];
