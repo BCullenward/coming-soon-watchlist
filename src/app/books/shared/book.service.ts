@@ -33,11 +33,12 @@ export class BookService {
     let booklist: IBook[] = [];
 
     if (watch.watchlist.books) {
-      for (let book of watch.watchlist.books)
-      {
-        //watch.watchlist.books.map(w => booklist.push(BOOKS.find(b => b.id = book.id)));
-        booklist.push(BOOKS.find(b => b.id === book.id));
-      }
+      watch.watchlist.books.map(w => booklist.push(BOOKS.find(b => b.id === w.id)));
+      //for (let book of watch.watchlist.books)
+      //{
+      //  //watch.watchlist.books.map(w => booklist.push(BOOKS.find(b => b.id = book.id)));
+      //  booklist.push(BOOKS.find(b => b.id === book.id));
+      //}
     }
 
     let blst = new Subject<IBook[]>();

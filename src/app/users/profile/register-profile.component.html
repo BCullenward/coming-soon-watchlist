@@ -1,20 +1,20 @@
 <div>
-  <h1>Edit Your Profile </h1>
+  <h1>Register Your Account</h1>
   <hr>
   <div class="col-md-4">
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)" autocomplete="off" novalidate>
-
-      <div>
-        <span>
-          <label for="userID">User ID: {{ getUserID() }}</label>
-        </span>
-      </div>
 
       <div class="form-group" [ngClass]="{'error' : !validateUserName() }">
         <label for="userName">User Name:</label>
         <em *ngIf="!validateUserName() && profileForm.controls.userName.errors.required">Required</em>
         <em *ngIf="!validateUserName() && profileForm.controls.userName.errors.pattern">Must start with a letter</em>
         <input formControlName="userName" id="userName" type="text" class="form-control" placeholder="User Name..." />
+      </div>
+
+      <div class="form-group" [ngClass]="{'error' : !validatePassword() }">
+        <label for="password">Password:</label>
+        <em *ngIf="!validatePassword() && profileForm.controls.userName.errors.password">Required</em>
+        <input formControlName="password" id="password" type="text" class="form-control" placeholder="Password..." />
       </div>
 
       <div class="form-group" [ngClass]="{'error' : !validateFirstName() }">
@@ -27,6 +27,7 @@
       <div class="form-group" [ngClass]="{'error' : !validateLastName() }">
         <label for="lastName">Last Name:</label>
         <em *ngIf="!validateLastName() && profileForm.controls.lastName.errors.required">Required</em>
+        <em *ngIf="!validateLastName() && profileForm.controls.lastName.errors.pattern">Must start with a letter</em>
         <input formControlName="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name..." />
       </div>
 
@@ -38,7 +39,8 @@
 
       <div class="form-group" [ngClass]="{'error' : !validateCity() }">
         <label for="city">City:</label>
-        <em *ngIf="!validateCity()">Required</em>
+        <em *ngIf="!validateCity() && profileForm.controls.city.errors.required">Required</em>
+        <em *ngIf="!validateCity() && profileForm.controls.city.errors.pattern">Must start with a letter</em>
         <input formControlName="city" id="city" type="text" class="form-control" placeholder="City..." />
       </div>
 
@@ -50,7 +52,8 @@
 
       <div class="form-group" [ngClass]="{'error' : !validateCountry() }">
         <label for="country">Country:</label>
-        <em *ngIf="!validateCountry()">Required</em>
+        <em *ngIf="!validateCountry() && profileForm.controls.country.errors.required">Required</em>
+        <em *ngIf="!validateCountry() && profileForm.controls.country.errors.pattern">Must start with a letter</em>
         <input formControlName="country" id="country" type="text" class="form-control" placeholder="Country..." />
       </div>
 

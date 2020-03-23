@@ -31,12 +31,16 @@
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
+            <a [routerLink]="['']"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact:true}">Home</a>
+          </li>
+
+          <li>
             <a *ngIf="!auth.isAuthenticated()" [routerLink]="['./users/login']"
                routerLinkActive="active"
                [routerLinkActiveOptions]="{exact:true}">Login</a>
-          </li>
-          <li>
-            <a *ngIf="auth.isAuthenticated()" [routerLink]="['./users/profile']">Welcome {{ auth.currentUser.firstname }}</a>
+            <a *ngIf="auth.isAuthenticated()" [routerLink]="['./users/profile']">Welcome, {{ auth.currentUser.firstname }}</a>
           </li>
         </ul>
       </div>
