@@ -13,12 +13,17 @@ import {
 } from './index';
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksResolver } from './books-resolver.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   declarations: [
     NavBooksComponent,

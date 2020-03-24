@@ -1,2 +1,4 @@
 at console add the following:
+
 npm install ngf-bootstrap --save
+npm i --save @ng-select/ng-select

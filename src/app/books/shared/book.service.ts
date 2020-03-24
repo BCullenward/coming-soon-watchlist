@@ -24,6 +24,12 @@ export class BookService {
     return BOOKS.find(book => book.id === id);
   }
 
+  saveBook(book) {
+    book.id = "ABCde35";
+    console.log(book);
+    BOOKS.push(book);
+  }
+
 
   // This will get all the books the user has flagged to be watched.
   getBooksByUserID(userid: number): Observable<IBook[]> {

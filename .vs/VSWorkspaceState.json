@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Local settings (.vs)\\coming-soon-watchlist\\v16",
     "\\src",
     "\\src\\app",
     "\\src\\app\\books",
-    "\\src\\app\\books\\book-watchlist",
-    "\\src\\app\\books\\shared"
+    "\\src\\app\\books\\shared",
+    "\\src\\dataaccess"
   ],
   "SelectedNode": "\\src\\app\\books\\shared\\book.service.ts",
   "PreviewInSolutionExplorer": false
