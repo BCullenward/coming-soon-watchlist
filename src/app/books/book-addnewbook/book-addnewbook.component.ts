@@ -6,6 +6,7 @@ import { BookService } from '../shared/index';
   templateUrl: './book-addnewbook.component.html',
   styleUrls: ['./book-addnewbook.component.css']
 })
+
 export class BookAddNewBookComponent implements OnInit {
   isDirty: boolean = true;
 
@@ -29,6 +30,9 @@ export class BookAddNewBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.newBook.thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png";
+    this.newBook.smallthumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png"
+
   }
 
 
@@ -38,12 +42,18 @@ export class BookAddNewBookComponent implements OnInit {
 
   saveBook(formValues) {
     formValues.categories = this.selectedCategories;
+    console.log("authors: ", formValues.authors.values);
+
     //console.log(formValues);
     this.bookService.saveBook(formValues);
     this.isDirty = false;
     this.router.navigate(['/books']);
   }
 
+  formatAuthors(authors) {
+    console.log(authors);
+    return authors.join();
+}
 
 
 }
