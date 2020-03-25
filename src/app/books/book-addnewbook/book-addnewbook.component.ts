@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookService } from '../shared/index';
+import { BookService, IBook, IIndustryIdentifiers } from '../shared/index';
 
 @Component({
   templateUrl: './book-addnewbook.component.html',
@@ -10,7 +10,8 @@ import { BookService } from '../shared/index';
 export class BookAddNewBookComponent implements OnInit {
   isDirty: boolean = true;
 
-  newBook;
+  newBook: IBook;
+  isbn: IIndustryIdentifiers;
 
    categories = [
     { id: 1, category: "Fiction" },
@@ -30,9 +31,10 @@ export class BookAddNewBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newBook.thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png";
-    this.newBook.smallthumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png"
-
+    this.newBook = this.getNewBook();
+    //this.newBook.volumeInfo.imageLinks.thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png";
+    //this.newBook.volumeInfo.imageLinks.smallThumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png";
+    //this.isbn.type = "ISBN_13";
   }
 
 
@@ -41,8 +43,16 @@ export class BookAddNewBookComponent implements OnInit {
   }
 
   saveBook(formValues) {
-    formValues.categories = this.selectedCategories;
-    console.log("authors: ", formValues.authors.values);
+    formValues.volumeInfo.categories = this.selectedCategories;
+    console.log("sel cat: ", this.selectedCategories);
+
+    //console.log("cat: ", formValues.volumeInfo.categories);
+
+
+    formValues.volumeInfo.authors = formValues.volumeInfo.authors.split(',');
+
+    //console.log("desc: ", formValues.volumeInfo.description);
+
 
     //console.log(formValues);
     this.bookService.saveBook(formValues);
@@ -50,9 +60,22 @@ export class BookAddNewBookComponent implements OnInit {
     this.router.navigate(['/books']);
   }
 
-  formatAuthors(authors) {
-    console.log(authors);
-    return authors.join();
+  getNewBook(): IBook {
+    return {
+      id: "",
+      volumeInfo:
+      {
+        title: "",
+        authors: [],
+        publisher: "",
+        publishedDate: "",
+        description: "",
+        imageLinks: {
+          thumbnail: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png",
+          smallThumbnail: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png"
+        }
+      }
+    }
 }
 
 
