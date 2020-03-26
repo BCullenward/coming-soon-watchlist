@@ -72,7 +72,8 @@
                    appendTo="body"
                    multiple="true"
                    clearAllText="Clear"
-                   (ngModel)="selectedCategories">
+                   (ngModel)="selectedCategories"
+                   (change)="onCategoriesChange($event)">
         </ng-select>
       </div>
 

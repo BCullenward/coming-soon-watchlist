@@ -37,6 +37,9 @@ export class BookAddNewBookComponent implements OnInit {
     //this.isbn.type = "ISBN_13";
   }
 
+  onCategoriesChange(event: any) {
+    this.selectedCategories = event;
+  }
 
   cancel() {
     this.router.navigate(['/books']);
