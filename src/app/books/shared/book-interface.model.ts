@@ -3,7 +3,7 @@ export interface IBook {
   id: string,
   etag?: string,
   selfLink?: string,
-  volumeInfo?: {
+  volumeInfo: {
     title: string,
     subtitle?: string,
     authors: string[],
@@ -17,7 +17,7 @@ export interface IBook {
     },
     pageCount?: number,
     printType?: string,
-    categories?: string[],
+    categories?: any[],
     averageRating?: number,
     ratingsCount?: number,
     maturityRating?: string,
@@ -100,6 +100,6 @@ export interface IVolumeSeries {
 }
 
 export interface IIndustryIdentifiers {
-  type?: string,
-  identifier?: string
+  type: string,
+  identifier: string
 }

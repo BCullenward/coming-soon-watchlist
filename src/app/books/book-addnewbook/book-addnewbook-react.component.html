@@ -1,0 +1,117 @@
+<p>This is just a demo of reactive forms.</p>
+<h1>New Book</h1>
+<hr>
+<div class="col-md-6">
+  <form [formGroup]="newBookForm" (ngSubmit)="saveBook(newBookForm.value)" autocomplete="off">
+    <!-- Title -->
+    <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty}">
+        <label for="title">Title:</label>
+        <em *ngIf="title.invalid && title.dirty">Required</em>
+        <input formControlName="title" name="title" id="title" type="text" class="form-control" placeholder="Title of book..." />
+    </div>
+
+    <!-- Subtitle -->
+    <div class="form-group">
+      <label for="subtitle">Subtitle:</label>
+      <input formControlName="subtitle" name="subtitle" id="subtitle" type="text" class="form-control" placeholder="Subtitle of book..." />
+    </div>
+
+    <!-- Series number -->
+    <div class="form-group">
+      <label for="bookDisplayNumber">Book Series Number:</label>
+      <input formControlName="bookDisplayNumber" name="bookDisplayNumber" id="bookDisplayNumber" type="text" class="form-control" digitOnly maxlength="2" placeholder="Series Number..." />
+    </div>
+
+    <!-- Authors -->
+    <div class="form-group" [ngClass]="{'error': authors.invalid && authors.dirty}">
+      <label for="authors">Author(s):</label>
+      <em *ngIf="authors.invalid && authors.dirty">Required</em>
+      <input formControlName="authors" name="authors" type="text" id="authors" class="form-control" placeholder="Author(s) of book (Put in Comma Separted List if more than one)..." />
+    </div>
+
+    <!-- Publisher -->
+    <div class="form-group" [ngClass]="{'error': publisher.invalid && publisher.dirty}">
+      <label for="publisher">Publisher:</label>
+      <em *ngIf="publisher.invalid && publisher.dirty">Required</em>
+      <input formControlName="publisher" name="publisher" id="publisher" type="text" class="form-control" placeholder="Publisher of book..." />
+    </div>
+
+    <!-- Published Date -->
+    <div class="form-group" [ngClass]="{'error': publishedDate.invalid && publishedDate.dirty}">
+      <label for="publishedDate">Published Date:</label>
+      <em *ngIf="publishedDate.invalid && publishedDate.dirty">Required</em>
+      <input formControlName="publishedDate" name="publishedDate" id="publishedDate" type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
+    </div>
+
+    <!-- Maturity Rating-->
+    <div class="form-group">
+      <label for="maturityRating">Has Mature Rating:</label>
+      <input formControlName="maturityRating" id="maturityRating" type="checkbox" (change)="onMaturityChange($event.target.checked)"  class="form-control" />
+    </div>
+
+    <!-- ISBNs -->
+    <div class="form-group" [ngClass]="{'error': identifier.invalid && identifier.dirty}">
+      <label for="identifiertype">Identifier:</label>
+      <select formControlName="identifiertype" class="form-control" width:50px>
+        <option value="">Select Identifier...</option>
+        <option value="ISBN_10">ISBN10</option>
+        <option value="ISBN_13">ISBN13</option>
+        <option value="OTHER">Other</option>
+      </select>
+      <em *ngIf="identifier.invalid && identifier.dirty">Required</em>
+      <input formControlName="identifier" id="identifier" type="text" class="form-control" placeholder="enter upc id..." />
+    </div>
+
+    <!-- Page Count -->
+    <div class="form-group" [ngClass]="{'error': pageCount.invalid && pageCount.dirty}">
+      <label for="pageCount">Page Count:</label>
+      <em *ngIf="pageCount.invalid && pageCount.dirty">Required</em>
+      <input formControlName="pageCount" name="pageCount" id="pageCount" type="text" class="form-control" digitOnly maxlength="5" placeholder="Page Count..." />
+    </div>
+
+    <!-- Categories -->
+    <div class="form-group">
+      <label for="bookCategories">Categories:</label>
+      <ng-select [items]="categories"
+                  bindLabel="category"
+                  placeholder="Select Categories"
+                  appendTo="body"
+                  multiple="true"
+                  id="bookCategories"
+                  clearAllText="Clear"
+                  formControlName="bookCategories"
+                 (change)="onCategoriesChange($event)">
+      </ng-select>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group" [ngClass]="{'error': description.invalid && description.dirty}">
+      <label for="description">Description:</label>
+      <em *ngIf="description.invalid && description.dirty && description?.errors.required">Required</em>
+      <em *ngIf="description.invalid && description.dirty && description?.errors.maxLenth">Cannot exceed 400 characters</em>
+      <em *ngIf="description.invalid && description.dirty && description?.errors.restrictedWords">Restricted words found: {{ description.errors.restrictedWords }} </em>
+      <textarea formControlName="description" name="description" id="description" rows="3" class="form-control" placeholder="Description of book..."></textarea>
+    </div>
+
+    <!-- Thumbnail -->
+    <div class="form-group" [ngClass]="{'error': thumbnail.invalid && thumbnail.dirty}">
+      <label for="thumbnail">Thumbnail:</label>
+      <em *ngIf="thumbnail.invalid && thumbnail.dirty">Required</em>
+      <input formControlName="thumbnail" name="thumbnail" id="thumbnail" required pattern=".*\/.*.(png|jpg)" id="thumbnail" type="text" class="form-control" placeholder="url of image..." />
+      <img [src]="thumbnail.value"
+           *ngIf="thumbnail?.valid" />
+    </div>
+
+    <!-- Small Thumbnail -->
+    <div class="form-group" [ngClass]="{'error': smallthumbnail.invalid && smallthumbnail.dirty}">
+      <label for="smallthumbnail">Small Thumbnail:</label>
+      <em *ngIf="smallthumbnail.invalid && smallthumbnail.dirty">Required</em>
+      <input formControlName="smallthumbnail" name="smallthumbnail" id="smallthumbnail" required pattern=".*\/.*.(png|jpg)" id="smallthumbnail" type="text" class="form-control" placeholder="url of small image..." />
+      <img [src]="smallthumbnail.value"
+           *ngIf="smallthumbnail?.valid"/>
+    </div>
+
+    <button type="submit" [disabled]="newBookForm.invalid" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+  </form>
+</div>

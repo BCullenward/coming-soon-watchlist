@@ -10,28 +10,27 @@ import { IBook } from '../shared/index';
 export class BookDetailsComponent implements OnInit {
   book: IBook;
   ISBN13: string;
+  ISBN10: string;
+  ISBNOTHER: string;
 
   constructor(private bookService: BookService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.book = this.bookService.getBook(this.route.snapshot.params['id']);
 
-    //get ISBN13 if it exists
+    //get ISBN if it exists
     if (this.book.volumeInfo.industryIdentifiers) {
       this.book.volumeInfo.industryIdentifiers.map(i => {
         if (i.type === "ISBN_13") {
           this.ISBN13 = i.identifier;
         }
+        if (i.type === "ISBN_10") {
+          this.ISBN10 = i.identifier;
+        }
+        if (i.type === "OTHER") {
+          this.ISBNOTHER = i.identifier;
+        }
       });
     }
-
-    //authors list
-    //this.authors = this.book.volumeInfo.authors.split(',');
-    //console.log(this.book.volumeInfo.authors);
-    //this.book.volumeInfo.authors.map(a => this.authors.push(a));
-
   }
-
-
-
 }

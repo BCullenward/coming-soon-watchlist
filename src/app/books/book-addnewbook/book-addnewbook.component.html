@@ -8,58 +8,67 @@
       <!-- Title -->
       <div class="form-group" [ngClass]="{'error': title?.invalid && title?.touched}">
         <label for="bookTitle">Title:</label>
-        <input (ngModel)="newBook.volumeInfo.title" #title="ngModel" name="title" required id="title" type="text" class="form-control" placeholder="Title of book..." />
+        <input [(ngModel)]="newBook.volumeInfo.title" #title="ngModel" name="title" required id="title" type="text" class="form-control" placeholder="Title of book..." />
         <em *ngIf="title?.invalid && (title?.touched)">Required</em>
       </div>
 
       <!-- Subtitle -->
       <div class="form-group">
         <label for="bookSubtitle">Subtitle:</label>
-        <input (ngModel)="newBook.volumeInfo.subtitle" #subtitle="ngModel" name="subtitle" required id="subtitle" type="text" class="form-control" placeholder="Subtitle of book..." />
+        <input [(ngModel)]="newBook.volumeInfo.subtitle" #subtitle="ngModel" name="subtitle" required id="subtitle" type="text" class="form-control" placeholder="Subtitle of book..." />
       </div>
 
       <!-- Series number -->
-      <div class="form-group">
-        <label for="bookSeriesNumber">Book Series Number:</label>
-        <input (ngModel)="newBook.volumeInfo.seriesInfo.bookDisplayNumber" #bookDisplayNumber="ngModel" name="bookDisplayNumber" required id="bookDisplayNumber" type="text" type="number" class="form-control" placeholder="Series Number..." />
+      <div ngModelGroup="seriesInfo">
+        <div class="form-group">
+          <label for="bookSeriesNumber">Book Series Number:</label>
+          <input [(ngModel)]="newBook.volumeInfo.seriesInfo.bookDisplayNumber" #bookDisplayNumber="ngModel" name="bookDisplayNumber" required id="bookDisplayNumber" type="text" type="number" class="form-control" placeholder="Series Number..." />
+        </div>
       </div>
 
       <!-- Authors -->
       <div class="form-group" [ngClass]="{'error': authors?.invalid && authors?.touched}">
         <label for="bookAuthor">Author(s) (Put in Comma Separted List):</label>
         <em *ngIf="authors?.invalid && (authors?.touched)">Required</em>
-        <!--<input (ngModel)="newBook.author[0]" #authors="ngModel" name="author" required id="author" type="text" class="form-control" placeholder="Author(s) of book..." />-->
-        <input (ngModel)="newBook.volumeInfo.authors" #authors="ngModel" name="authors" required id="authors" type="text" class="form-control" placeholder="Author(s) of book..." />
+        <input [(ngModel)]="newBook.volumeInfo.authors" #authors="ngModel" name="authors" required id="authors" type="text" class="form-control" placeholder="Author(s) of book..." />
       </div>
 
       <!-- Publisher -->
       <div class="form-group" [ngClass]="{'error': publisher?.invalid && publisher?.touched}">
         <label for="bookPublisher">Publisher:</label>
         <em *ngIf="publisher?.invalid && (publisher?.touched)">Required</em>
-        <input (ngModel)="newBook.volumeInfo.publisher" #publisher="ngModel" name="publisher" required id="publisher" type="text" class="form-control" placeholder="Publisher of book..." />
+        <input [(ngModel)]="newBook.volumeInfo.publisher" #publisher="ngModel" name="publisher" required id="publisher" type="text" class="form-control" placeholder="Publisher of book..." />
       </div>
 
       <!-- Published Date -->
       <div class="form-group" [ngClass]="{'error': publishedDate?.invalid && publishedDate?.touched}">
         <label for="publishedDate">Published Date:</label>
         <em *ngIf="publishedDate?.invalid && (publishedDate?.touched)">Required</em>
-        <input (ngModel)="newBook.volumeInfo.publishedDate" #publishedDate ="ngModel" name="publishedDate" required id="publishedDate" type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
+        <input [(ngModel)]="newBook.volumeInfo.publishedDate" #publishedDate="ngModel" name="publishedDate" required id="publishedDate" type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
       </div>
 
-      <!-- ISBN13 -->
-      <!--<div ngModelGroup="industryIdentifiers">
-        <div class="form-group" [ngClass]="{'error': ISBN13?.invalid && ISBN13?.touched}">
-          <label for="bookISBN13">ISBN13:</label>
-          <em *ngIf="ISBN13?.invalid && (ISBN13?.touched)">Required</em>
-          <input (ngModel)="isbn.identifier" maxlength="13" #ISBN13="ngModel" name="ISBN13" required id="ISBN13" type="text" class="form-control" placeholder="ISBN13 of book..." />
-        </div>
-      </div>-->
+      <!-- ISBNs -->
+      <div ngModelGroup="industryIdentifiers">
+
+        <!--<div class="form-group" [ngClass]="{'error': ISBN10?.invalid && ISBN10?.touched}">
+          <label for="bookISBN10">ISBN10:</label>
+          <em *ngIf="ISBN10?.invalid && (ISBN10?.touched)">Required</em>
+          <input (ngModel)="isbn.identifier[0]" maxlength="10" #ISBN10="ngModel" name="identifier" required id="identifier" type="text" class="form-control" placeholder="ISBN10 of book..." />
+        </div>-->
+
+        <!--
+  <div class="form-group" [ngClass]="{'error': ISBN13?.invalid && ISBN13?.touched}">
+    <label for="bookISBN13">ISBN13:</label>
+    <em *ngIf="ISBN13?.invalid && (ISBN13?.touched)">Required</em>
+    <input (ngModel)="isbn.identifier" maxlength="13" #ISBN13="ngModel" name="ISBN13" required id="ISBN13" type="text" class="form-control" placeholder="ISBN13 of book..." />
+  </div>-->
+      </div>
 
       <!-- Page Count -->
       <div class="form-group" [ngClass]="{'error': pageCount?.invalid && pageCount?.touched}">
         <label for="bookPageCount">Page Count:</label>
         <em *ngIf="pageCount?.invalid && (pageCount?.touched)">Required</em>
-        <input (ngModel)="newBook.volumeInfo.pageCount" #pageCount="ngModel" name="pageCount" required id="pageCount" type="text" type="number" class="form-control" placeholder="Page Count..." />
+        <input [(ngModel)]="newBook.volumeInfo.pageCount" #pageCount="ngModel" name="pageCount" required id="pageCount" type="text" type="number" class="form-control" placeholder="Page Count..." />
       </div>
 
       <!-- Categories -->
@@ -72,7 +81,8 @@
                    appendTo="body"
                    multiple="true"
                    clearAllText="Clear"
-                   (ngModel)="selectedCategories">
+                   (ngModel)="selectedCategories"
+                   (change)="onCategoriesChange($event)">
         </ng-select>
       </div>
 
@@ -80,7 +90,7 @@
       <div class="form-group" [ngClass]="{'error': description?.invalid && description?.touched}">
         <label for="bookDescription">Description:</label>
         <em *ngIf="description?.invalid && (description?.touched)">Required</em>
-        <input (ngModel)="newBook.volumeInfo.description" #description="ngModel" name="description" required id="description" type="text" class="form-control" placeholder="Description of book..." />
+        <input [(ngModel)]="newBook.volumeInfo.description" #description="ngModel" name="description" required id="description" type="text" class="form-control" placeholder="Description of book..." />
       </div>
 
       <!-- Thumbnail -->
@@ -89,7 +99,7 @@
           <label for="thumbnail">Thumbnail:</label>
           <em *ngIf="thumbnail?.invalid && thumbnail?.touched && thumbnail?.errors.required">Required</em>
           <em *ngIf="thumbnail?.invalid && thumbnail?.touched  && thumbnail?.errors.pattern">Must be a png or jpg url</em>
-          <input (ngModel)="newBook.volumeInfo.imageLinks.thumbnail" #thumbnail="ngModel" name="thumbnail" required pattern=".*\/.*.(png|jpg)" id="thumbnail" type="text" class="form-control" placeholder="url of image..." />
+          <input [(ngModel)]="newBook.volumeInfo.imageLinks.thumbnail" #thumbnail="ngModel" name="thumbnail" required pattern=".*\/.*.(png|jpg)" id="thumbnail" type="text" class="form-control" placeholder="url of image..." />
           <img [src]="thumbnail.value"
                *ngIf="thumbnail?.valid" />
         </div>
@@ -99,7 +109,7 @@
           <label for="smallthumbnail">Small Thumbnail:</label>
           <em *ngIf="smallthumbnail?.invalid && smallthumbnail?.touched && smallthumbnail?.errors.required">Required</em>
           <em *ngIf="smallthumbnail?.invalid && smallthumbnail?.touched  && smallthumbnail?.errors.pattern">Must be a png or jpg url</em>
-          <input (ngModel)="newBook.volumeInfo.imageLinks.smallThumbnail" #smallthumbnail="ngModel" name="smallthumbnail" required pattern=".*\/.*.(png|jpg)" id="smallthumbnail" type="text" class="form-control" placeholder="url of image..." />
+          <input [(ngModel)]="newBook.volumeInfo.imageLinks.smallThumbnail" #smallthumbnail="ngModel" name="smallthumbnail" required pattern=".*\/.*.(png|jpg)" id="smallthumbnail" type="text" class="form-control" placeholder="url of image..." />
           <img [src]="smallthumbnail.value"
                *ngIf="smallthumbnail?.valid" />
         </div>

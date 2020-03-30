@@ -1,0 +1,53 @@
+label {
+  height: 20px;
+  width: 200px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+  text-align: right;
+  clear: both;
+  float: left;
+}
+
+input {
+    height: 20px;
+    width: 300px;
+    border: 1px;
+    margin-top: 10px;
+    float: left;
+}
+
+input[type-button] {
+    float: none;
+}
+
+input[type-checkbox] {
+  left: auto;
+  right: 0;
+}
+
+em {
+  float: right;
+  color: #FF1C15;
+  padding-left: 10px;
+}
+
+.error input, .error select, .error textarea {
+  background-color: #E3C3C5;
+}
+
+.error ::-webkit-input-placeholder {
+  color: #999;
+}
+
+.error ::-moz-placeholder {
+  color: #999;
+}
+
+.error :-moz-placeholder {
+  color: #999;
+}
+
+.error :ms-input-placeholder {
+  color: #999;
+}

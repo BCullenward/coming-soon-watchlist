@@ -11,7 +11,7 @@ export class BookAddNewBookComponent implements OnInit {
   isDirty: boolean = true;
 
   newBook: IBook;
-  isbn: IIndustryIdentifiers;
+  isbn: IIndustryIdentifiers[];
 
    categories = [
     { id: 1, category: "Fiction" },
@@ -32,32 +32,44 @@ export class BookAddNewBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.newBook = this.getNewBook();
-    //this.newBook.volumeInfo.imageLinks.thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png";
-    //this.newBook.volumeInfo.imageLinks.smallThumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png";
+//    this.getNewISBN();
+
     //this.isbn.type = "ISBN_13";
   }
 
+  onCategoriesChange(event: any) {
+    this.selectedCategories = event;
+  }
 
   cancel() {
     this.router.navigate(['/books']);
   }
 
   saveBook(formValues) {
-    formValues.volumeInfo.categories = this.selectedCategories;
-    console.log("sel cat: ", this.selectedCategories);
+    // set the categories
+    formValues.volumeInfo.categories = this.selectedCategories.map(category => category.category);
 
-    //console.log("cat: ", formValues.volumeInfo.categories);
-
-
+    // set the comma separted list of authors to an array
     formValues.volumeInfo.authors = formValues.volumeInfo.authors.split(',');
 
-    //console.log("desc: ", formValues.volumeInfo.description);
-
-
-    //console.log(formValues);
     this.bookService.saveBook(formValues);
+
     this.isDirty = false;
     this.router.navigate(['/books']);
+  }
+
+  getNewISBN() {
+    this.isbn[0] = {
+      type: "ISBN_10",
+      identifier: "1234567890"
+    };
+
+    this.isbn[1] = {
+      type: "ISBN_13",
+      identifier: "1234567890123"
+    };
+
+   // console.log("isbn: ", this.isbn);
   }
 
   getNewBook(): IBook {
@@ -69,10 +81,14 @@ export class BookAddNewBookComponent implements OnInit {
         authors: [],
         publisher: "",
         publishedDate: "",
-        description: "",
+        description: "Wow, what a description!",
         imageLinks: {
           thumbnail: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png",
           smallThumbnail: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png"
+        },
+        categories: [],
+        seriesInfo: {
+          bookDisplayNumber: ""
         }
       }
     }

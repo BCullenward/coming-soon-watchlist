@@ -9,12 +9,14 @@ import {
   NavBooksComponent,
   BooksHeaderComponent,
   MyBookWatchitemsComponent,
-  BookAddNewBookComponent
+  BookAddNewBookComponent,
+  BookAddNewBookReactComponent
 } from './index';
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksResolver } from './books-resolver.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DigitOnlyModule } from '../common/digit-only.module';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BooksRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    DigitOnlyModule,
     NgSelectModule
   ],
   declarations: [
@@ -33,7 +36,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AddBookWatchitemComponent,
     BooksHeaderComponent,
     MyBookWatchitemsComponent,
-    BookAddNewBookComponent
+    BookAddNewBookComponent,
+    BookAddNewBookReactComponent
   ],
   providers: [
     BookRouteActivator,

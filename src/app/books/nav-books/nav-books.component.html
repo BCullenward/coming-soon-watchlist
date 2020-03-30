@@ -13,7 +13,7 @@
              [routerLinkActiveOptions]="{exact:true}">Add Watch Item</a>
         </li>
         <li *ngIf="auth.isAuthenticated()">
-          <a  [routerLink]="['./mybooks']"
+          <a [routerLink]="['./mybooks']"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">My Watched Books</a>
         </li>
@@ -21,6 +21,11 @@
           <a [routerLink]="['./addbook']"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}">Add New Book</a>
+        </li>
+        <li>
+          <a [routerLink]="['./addbookreact']"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">Add New Book (Reactive Form)</a>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

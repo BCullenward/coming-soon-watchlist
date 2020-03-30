@@ -10,18 +10,21 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div><strong>Author(s):</strong>
-           <div *ngFor="let author of book?.volumeInfo?.authors">
-             <span class="empty"></span>
-             <span> {{author}} </span>
-           </div>
+      <div>
+        <strong>Author(s):</strong>
+        <div *ngFor="let author of book?.volumeInfo?.authors">
+          <span class="empty"></span>
+          <span> {{author}} </span>
+        </div>
       </div>
       <div *ngIf="book?.volumeInfo?.publisher || book?.volumeInfo?.publishedDate">
         <span *ngIf="book?.volumeInfo?.publisher"><strong>Publisher:</strong> {{book?.volumeInfo?.publisher}}</span>
         <span class="empty"></span>
         <span *ngIf="book?.volumeInfo?.publishedDate"><strong>Published Date:</strong> {{book?.volumeInfo?.publishedDate | date:'M-d-yyyy'}}</span>
       </div>
-      <div *ngIf="ISBN13"><strong>ISBN:</strong> {{ ISBN13 }}</div>
+      <div *ngIf="ISBN13"><strong>ISBN13:</strong> {{ ISBN13 }}</div>
+      <div *ngIf="ISBN10"><strong>ISBN10:</strong> {{ ISBN10 }}</div>
+      <div *ngIf="ISBNOTHER"><strong>ISBNOTHER:</strong> {{ ISBNOTHER }}</div>
       <div *ngIf="book?.volumeInfo?.pageCount"><strong>Pages:</strong> {{book?.volumeInfo?.pageCount}}</div>
       <div *ngIf="book?.volumeInfo?.categories">
         <div>
@@ -33,10 +36,10 @@
         </div>
         <div *ngIf="book?.volumeInfo?.description"><strong>Description:</strong> {{book?.volumeInfo?.description}}</div>
       </div>
-    <div class="col-md-6" *ngIf="book?.volumeInfo?.seriesInfo?.bookDisplayNumber">
+      <div class="col-md-6" *ngIf="book?.volumeInfo?.seriesInfo?.bookDisplayNumber">
         <strong>Series Info:</strong><br />
         <div><strong>Series Number:</strong> {{book?.volumeInfo?.seriesInfo?.bookDisplayNumber}}</div>
+      </div>
+      <div class="pad-bottom"></div>
     </div>
-    <div class="pad-bottom"></div>
-  </div>
 </div>

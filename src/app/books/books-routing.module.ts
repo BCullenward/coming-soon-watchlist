@@ -7,7 +7,8 @@ import {
   BookRouteActivator,
   BooksComponent,
   MyBookWatchitemsComponent,
-  BookAddNewBookComponent
+  BookAddNewBookComponent,
+  BookAddNewBookReactComponent
 } from './index';
 import { BooksResolver } from './books-resolver.service';
 
@@ -20,6 +21,7 @@ const bookRoutes: Routes = [
       { path: '', component: BooksComponent },
       { path: 'new', component: AddBookWatchitemComponent, canDeactivate: ['canDeactivateAddBook'] },
       { path: 'mybooks', component: MyBookWatchitemsComponent },
+      { path: 'addbookreact', component: BookAddNewBookReactComponent },
       { path: 'addbook', component: BookAddNewBookComponent } ,
       { path: ':id', component: BookDetailsComponent, canActivate: [BookRouteActivator] }
     ]

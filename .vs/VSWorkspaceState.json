@@ -5,8 +5,10 @@
     "\\src\\app",
     "\\src\\app\\books",
     "\\src\\app\\books\\book-addnewbook",
+    "\\src\\app\\books\\book-details",
+    "\\src\\app\\books\\nav-books",
     "\\src\\dataaccess"
   ],
-  "SelectedNode": "\\src\\dataaccess\\books.json",
+  "SelectedNode": "\\src\\app\\books\\book-addnewbook\\book-addnewbook-react.component.ts",
   "PreviewInSolutionExplorer": false
 }

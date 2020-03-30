@@ -26,9 +26,19 @@ export class BookService {
 
   saveBook(book) {
     book.id = "ABCde35";
+    //book.volumeInfo.maturityRating = "NOT_MATURE";
+    book.volumeInfo.maturityRating = "MATURE";
+    //console.log(book);
+    BOOKS.push(book);
+  }
+
+  saveBookReact(book) {
+    book.id = "ABCde35";
     console.log(book);
     BOOKS.push(book);
   }
+
+
 
 
   // This will get all the books the user has flagged to be watched.
