@@ -78,7 +78,6 @@
       <input formControlName="isbnother" id="isbnother" type="text" class="form-control" placeholder="enter Other Identifier..." />
     </div>
 
-
     <!-- Page Count -->
     <div class="form-group" [ngClass]="{'error': pageCount.invalid && pageCount.dirty}">
       <label for="pageCount">Page Count:</label>
@@ -88,17 +87,10 @@
 
     <!-- Categories -->
     <div class="form-group">
-      <label for="bookCategories">Categories:</label>
-      <ng-select [items]="categories"
-                 bindLabel="category"
-                 placeholder="Select Categories"
-                 appendTo="body"
-                 multiple="true"
-                 id="bookCategories"
-                 clearAllText="Clear"
-                 formControlName="bookCategories"
-                 (change)="onCategoriesChange($event)">
-      </ng-select>
+      <label for="categories">Categories:</label>
+      <select multiple formControlName="categories" name="categories" id="categories" class="select">
+        <option *ngFor="let category of categorylist" [value]="category.name">{{category.name}}</option>
+      </select>
     </div>
 
     <!-- Description -->

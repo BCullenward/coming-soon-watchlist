@@ -51,3 +51,8 @@ em {
 .error :ms-input-placeholder {
   color: #999;
 }
+
+select {
+    color: black;
+    margin-top: 10px;
+}

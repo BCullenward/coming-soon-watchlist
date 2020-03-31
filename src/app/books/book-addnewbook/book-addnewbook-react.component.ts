@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   BookService,
@@ -9,6 +9,7 @@ import {
   specificLength,
   oneRequired
 } from '../shared/index';
+import { of } from 'rxjs';
 
 @Component({
   templateUrl: './book-addnewbook-react.component.html',
@@ -28,43 +29,40 @@ export class BookAddNewBookReactComponent implements OnInit {
   isbn13: FormControl;
   isbnother: FormControl;
   pageCount: FormControl;
-  bookCategories: FormControl;
+  categories: FormControl;
   description: FormControl;
   thumbnail: FormControl;
   smallthumbnail: FormControl;
 
   identiferGroup: FormGroup;
 
-
-
   rating: string = "NOT_MATURE";
+  categorylist = [];
 
-  categories = [
-    { id: 1, category: "Fiction" },
-    { id: 2, category: "Family & Relationships" },
-    { id: 3, category: "Business & Economics" },
-    { id: 4, category: "Political Science" },
-    { id: 5, category: "Crafts & Hobbies" },
-    { id: 6, category: "Comics & Graphic Novels" },
-    { id: 7, category: "Juvenile Fiction" },
-    { id: 8, category: "Literary Criticism" },
-    { id: 9, category: "Language Arts & Disciplines" }
-  ];
-  selectedCategories = [];
+  constructor(private router: Router, private bookService: BookService, private formBuilder: FormBuilder) {
+    this.newBookForm = this.formBuilder.group({
+      categorylist: ['']
+    });
 
-  constructor(private router: Router, private bookService: BookService) {
-
+    of(this.getCategories()).subscribe(categories => { this.categorylist = categories; })
   }
 
   ngOnInit(): void {
     this.getNewBook();
   }
 
-
-
-  onCategoriesChange(event: any) {
-    this.selectedCategories = event;
-    console.log("categories: ", this.selectedCategories);
+  getCategories() {
+    return [
+        { id: 1, name: "Fiction" },
+        { id: 2, name: "Family & Relationships" },
+        { id: 3, name: "Business & Economics" },
+        { id: 4, name: "Political Science" },
+        { id: 5, name: "Crafts & Hobbies" },
+        { id: 6, name: "Comics & Graphic Novels" },
+        { id: 7, name: "Juvenile Fiction" },
+        { id: 8, name: "Literary Criticism" },
+        { id: 9, name: "Language Arts & Disciplines" }
+    ];
   }
 
   onMaturityChange(isChecked: boolean) {
@@ -125,9 +123,6 @@ export class BookAddNewBookReactComponent implements OnInit {
 
 
   saveBook(formValues) {
-    // set the categories
-    formValues.categories = this.selectedCategories.map(category => category.category);
-
     // set the comma separted list of authors to an array
     formValues.authors = formValues.authors.split(',');
 
@@ -157,12 +152,8 @@ export class BookAddNewBookReactComponent implements OnInit {
       }
     }
 
-
-    console.log(book);
-
     this.bookService.saveBookReact(book);
 
-    //this.isDirty = false;
     this.router.navigate(['/books']);
   }
 
@@ -179,7 +170,7 @@ export class BookAddNewBookReactComponent implements OnInit {
     this.isbnother = new FormControl('', oneRequired);
 
     this.pageCount = new FormControl(233, [Validators.required, Validators.maxLength(5)]);
-    this.bookCategories = new FormControl('');
+    this.categories = new FormControl('');
     this.description = new FormControl('my desc', [Validators.required, Validators.maxLength(400), restrictedWords(['foo','bar']) ]);
     this.thumbnail = new FormControl('https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png', Validators.required);
     this.smallthumbnail = new FormControl('https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png', Validators.required);
@@ -196,7 +187,7 @@ export class BookAddNewBookReactComponent implements OnInit {
       isbn13: this.isbn13,
       isbnother: this.isbnother,
       pageCount: this.pageCount,
-      bookCategories: this.bookCategories,
+      categories: this.categories,
       description: this.description,
       thumbnail: this.thumbnail,
       smallthumbnail: this.smallthumbnail
