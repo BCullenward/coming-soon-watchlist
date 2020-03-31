@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BookService, IBook, IIndustryIdentifiers, restrictedWords } from '../shared/index';
+import {
+  BookService,
+  IBook,
+  IIndustryIdentifiers,
+  restrictedWords,
+  specificLength,
+  oneRequired
+} from '../shared/index';
 
 @Component({
   templateUrl: './book-addnewbook-react.component.html',
@@ -17,13 +24,18 @@ export class BookAddNewBookReactComponent implements OnInit {
   publisher: FormControl;
   publishedDate: FormControl;
   maturityRating: FormControl;
-  identifiertype: FormControl;
-  identifier: FormControl;
+  isbn10: FormControl;
+  isbn13: FormControl;
+  isbnother: FormControl;
   pageCount: FormControl;
   bookCategories: FormControl;
   description: FormControl;
   thumbnail: FormControl;
   smallthumbnail: FormControl;
+
+  identiferGroup: FormGroup;
+
+
 
   rating: string = "NOT_MATURE";
 
@@ -80,6 +92,37 @@ export class BookAddNewBookReactComponent implements OnInit {
     return invalid;
   }
 
+  setIndustryIdentifiers(formValues) {
+    let ids: IIndustryIdentifiers[] = [];
+    let i: number = 0;
+
+    if (formValues.isbn10.length === 10) {
+      ids[i] = {
+        type: "ISBN_10",
+        identifier: formValues.isbn10
+      };
+      i += 1;
+    }
+
+    if (formValues.isbn13.length === 13) {
+      ids[i] = {
+        type: "ISBN_13",
+        identifier: formValues.isbn13
+      };
+      i += 1;
+    }
+
+    if (formValues.isbnother.valid) {
+      ids[i] = {
+        type: "OTHER",
+        identifier: formValues.isbnother
+      };
+      i += 1;
+    }
+
+    return ids;
+  }
+
 
   saveBook(formValues) {
     // set the categories
@@ -89,17 +132,7 @@ export class BookAddNewBookReactComponent implements OnInit {
     formValues.authors = formValues.authors.split(',');
 
     // set industry identifiers
-    let isbn: IIndustryIdentifiers[] = []
-    isbn[0] = {
-      type: formValues.identifiertype,
-      identifier: formValues.identifier
-    };
-
-    // set maturity rating
-    //let rating = "NOT_MATURE";
-    //if (formValues.maturityRating.checked) {
-    //  rating = "MATURE";
-    //}
+    let isbn: IIndustryIdentifiers[] = this.setIndustryIdentifiers(formValues);
 
     let book: IBook = {
       id: undefined,
@@ -141,8 +174,9 @@ export class BookAddNewBookReactComponent implements OnInit {
     this.publisher = new FormControl('My Pub', Validators.required);
     this.publishedDate = new FormControl('01/01/1983', Validators.required);
     this.maturityRating = new FormControl(false, Validators.required);
-    this.identifiertype = new FormControl('ISBN_10', Validators.required);
-    this.identifier = new FormControl('1234561230', Validators.required);
+    this.isbn10 = new FormControl('1234567890', [specificLength(10), oneRequired]);
+    this.isbn13 = new FormControl('9112345612307', [specificLength(13), oneRequired]);
+    this.isbnother = new FormControl('', oneRequired);
 
     this.pageCount = new FormControl(233, [Validators.required, Validators.maxLength(5)]);
     this.bookCategories = new FormControl('');
@@ -158,13 +192,20 @@ export class BookAddNewBookReactComponent implements OnInit {
       publisher: this.publisher,
       publishedDate: this.publishedDate,
       maturityRating: this.maturityRating,
-      identifiertype: this.identifiertype,
-      identifier: this.identifier,
+      isbn10: this.isbn10,
+      isbn13: this.isbn13,
+      isbnother: this.isbnother,
       pageCount: this.pageCount,
       bookCategories: this.bookCategories,
       description: this.description,
       thumbnail: this.thumbnail,
       smallthumbnail: this.smallthumbnail
+    });
+
+    this.identiferGroup = new FormGroup({
+      isbn10: this.isbn10,
+      isbn13: this.isbn13,
+      isbnother: this.isbnother
     });
 
   }

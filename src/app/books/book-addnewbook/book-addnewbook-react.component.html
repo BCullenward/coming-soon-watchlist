@@ -5,9 +5,9 @@
   <form [formGroup]="newBookForm" (ngSubmit)="saveBook(newBookForm.value)" autocomplete="off">
     <!-- Title -->
     <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty}">
-        <label for="title">Title:</label>
-        <em *ngIf="title.invalid && title.dirty">Required</em>
-        <input formControlName="title" name="title" id="title" type="text" class="form-control" placeholder="Title of book..." />
+      <label for="title">Title:</label>
+      <em *ngIf="title.invalid && title.dirty">Required</em>
+      <input formControlName="title" name="title" id="title" type="text" class="form-control" placeholder="Title of book..." />
     </div>
 
     <!-- Subtitle -->
@@ -46,21 +46,38 @@
     <!-- Maturity Rating-->
     <div class="form-group">
       <label for="maturityRating">Has Mature Rating:</label>
-      <input formControlName="maturityRating" id="maturityRating" type="checkbox" (change)="onMaturityChange($event.target.checked)"  class="form-control" />
+      <input formControlName="maturityRating" id="maturityRating" type="checkbox" (change)="onMaturityChange($event.target.checked)" class="form-control" />
     </div>
 
-    <!-- ISBNs -->
-    <div class="form-group" [ngClass]="{'error': identifier.invalid && identifier.dirty}">
-      <label for="identifiertype">Identifier:</label>
-      <select formControlName="identifiertype" class="form-control" width:50px>
-        <option value="">Select Identifier...</option>
-        <option value="ISBN_10">ISBN10</option>
-        <option value="ISBN_13">ISBN13</option>
-        <option value="OTHER">Other</option>
-      </select>
-      <em *ngIf="identifier.invalid && identifier.dirty">Required</em>
-      <input formControlName="identifier" id="identifier" type="text" class="form-control" placeholder="enter upc id..." />
+    <!-- ISBN10 -->
+    <div class="form-group">
+      <label for="isbn10">ISBN10:</label>
+      <em *ngIf="isbn10.invalid && isbn10.dirty && isbn10?.errors.specificLength">Must be {{ isbn10.errors.specificLength }} characters</em>
+      <em *ngIf="isbn10.invalid && isbn10.dirty && isbn10?.errors.oneRequired
+          && isbn13.invalid && isbn13?.errors.oneRequired
+          && isbnother.invalid && isbnother?.errors.oneRequired">At least one required</em>
+      <input formControlName="isbn10" id="isbn10" type="text" class="form-control" placeholder="enter ISBN10..." />
     </div>
+
+    <!-- ISBN13 -->
+    <div class="form-group">
+      <label for="isbn13">ISBN13:</label>
+      <em *ngIf="isbn13.invalid && isbn13.dirty && isbn13?.errors.specificLength">Must be {{ isbn13.errors.specificLength }} characters</em>
+      <em *ngIf="isbn10.invalid && isbn10?.errors.oneRequired
+          && isbn13.invalid && isbn13.dirty && isbn13?.errors.oneRequired
+          && isbnother.invalid && isbnother?.errors.oneRequired">At least one required</em>
+      <input formControlName="isbn13" id="isbn13" type="text" class="form-control" placeholder="enter ISBN13..." />
+    </div>
+
+    <!-- ISBNOTHER -->
+    <div class="form-group">
+      <label for="isbnother">OTHER IDENTIFIER:</label>
+      <em *ngIf="isbn10.invalid && isbn10?.errors.oneRequired
+          && isbn13.invalid && isbn13?.errors.oneRequired
+          && isbnother.invalid && isbnother.dirty && isbnother?.errors.oneRequired">At least one required</em>
+      <input formControlName="isbnother" id="isbnother" type="text" class="form-control" placeholder="enter Other Identifier..." />
+    </div>
+
 
     <!-- Page Count -->
     <div class="form-group" [ngClass]="{'error': pageCount.invalid && pageCount.dirty}">
@@ -73,13 +90,13 @@
     <div class="form-group">
       <label for="bookCategories">Categories:</label>
       <ng-select [items]="categories"
-                  bindLabel="category"
-                  placeholder="Select Categories"
-                  appendTo="body"
-                  multiple="true"
-                  id="bookCategories"
-                  clearAllText="Clear"
-                  formControlName="bookCategories"
+                 bindLabel="category"
+                 placeholder="Select Categories"
+                 appendTo="body"
+                 multiple="true"
+                 id="bookCategories"
+                 clearAllText="Clear"
+                 formControlName="bookCategories"
                  (change)="onCategoriesChange($event)">
       </ng-select>
     </div>
@@ -108,7 +125,7 @@
       <em *ngIf="smallthumbnail.invalid && smallthumbnail.dirty">Required</em>
       <input formControlName="smallthumbnail" name="smallthumbnail" id="smallthumbnail" required pattern=".*\/.*.(png|jpg)" id="smallthumbnail" type="text" class="form-control" placeholder="url of small image..." />
       <img [src]="smallthumbnail.value"
-           *ngIf="smallthumbnail?.valid"/>
+           *ngIf="smallthumbnail?.valid" />
     </div>
 
     <button type="submit" [disabled]="newBookForm.invalid" class="btn btn-primary">Save</button>
