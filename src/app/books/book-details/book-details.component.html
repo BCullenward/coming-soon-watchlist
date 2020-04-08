@@ -42,4 +42,11 @@
       </div>
       <div class="pad-bottom"></div>
     </div>
+    <hr />
+    <book-dets [saleInfo]="book?.saleInfo"></book-dets>
+    <hr />
+    <div class="well">
+      <button type="button" class="btn btn-default" (click)="sendGetRequest()">Get Details</button>
+    </div>
+
 </div>

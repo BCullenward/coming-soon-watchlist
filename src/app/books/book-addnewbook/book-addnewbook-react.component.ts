@@ -18,13 +18,17 @@ import { of } from 'rxjs';
 
 export class BookAddNewBookReactComponent implements OnInit {
   newBookForm: FormGroup;
+  rating: string = "NOT_MATURE";
+  categorylist = [];
   title: FormControl;
   subtitle: FormControl;
   bookDisplayNumber: FormControl;
+  bookSeriesName: FormControl;
   authors: FormControl;
   publisher: FormControl;
   publishedDate: FormControl;
   maturityRating: FormControl;
+  identifier: FormGroup;
   isbn10: FormControl;
   isbn13: FormControl;
   isbnother: FormControl;
@@ -34,17 +38,13 @@ export class BookAddNewBookReactComponent implements OnInit {
   thumbnail: FormControl;
   smallthumbnail: FormControl;
 
-  identiferGroup: FormGroup;
-
-  rating: string = "NOT_MATURE";
-  categorylist = [];
-
   constructor(private router: Router, private bookService: BookService, private formBuilder: FormBuilder) {
     this.newBookForm = this.formBuilder.group({
       categorylist: ['']
     });
 
     of(this.getCategories()).subscribe(categories => { this.categorylist = categories; })
+
   }
 
   ngOnInit(): void {
@@ -94,33 +94,32 @@ export class BookAddNewBookReactComponent implements OnInit {
     let ids: IIndustryIdentifiers[] = [];
     let i: number = 0;
 
-    if (formValues.isbn10.length === 10) {
+    if (formValues.identifier.isbn10.length === 10) {
       ids[i] = {
         type: "ISBN_10",
-        identifier: formValues.isbn10
+        identifier: formValues.identifier.isbn10
       };
       i += 1;
     }
 
-    if (formValues.isbn13.length === 13) {
+    if (formValues.identifier.isbn13.length === 13) {
       ids[i] = {
         type: "ISBN_13",
-        identifier: formValues.isbn13
+        identifier: formValues.identifier.isbn13
       };
       i += 1;
     }
 
-    if (formValues.isbnother.valid) {
+    if (formValues.identifier.isbnother.valid) {
       ids[i] = {
         type: "OTHER",
-        identifier: formValues.isbnother
+        identifier: formValues.identifier.isbnother
       };
       i += 1;
     }
 
     return ids;
   }
-
 
   saveBook(formValues) {
     // set the comma separted list of authors to an array
@@ -161,31 +160,38 @@ export class BookAddNewBookReactComponent implements OnInit {
     this.title = new FormControl('I Wrote A Book', Validators.required);
     this.subtitle = new FormControl('with this subtitle');
     this.bookDisplayNumber = new FormControl('', Validators.maxLength(2));
+    this.bookSeriesName = new FormControl('');
     this.authors = new FormControl('joe author, jim author', Validators.required);
     this.publisher = new FormControl('My Pub', Validators.required);
     this.publishedDate = new FormControl('01/01/1983', Validators.required);
     this.maturityRating = new FormControl(false, Validators.required);
-    this.isbn10 = new FormControl('1234567890', [specificLength(10), oneRequired]);
-    this.isbn13 = new FormControl('9112345612307', [specificLength(13), oneRequired]);
-    this.isbnother = new FormControl('', oneRequired);
+
+    this.isbn10 = new FormControl('1234567890', [specificLength(10)]);
+    this.isbn13 = new FormControl('9112345612307', [specificLength(13)]);
+    this.isbnother = new FormControl('',[]);
 
     this.pageCount = new FormControl(233, [Validators.required, Validators.maxLength(5)]);
-    this.categories = new FormControl('');
+    this.categories = new FormControl('', Validators.required);
     this.description = new FormControl('my desc', [Validators.required, Validators.maxLength(400), restrictedWords(['foo','bar']) ]);
     this.thumbnail = new FormControl('https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png', Validators.required);
     this.smallthumbnail = new FormControl('https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Rick_Sanchez.png/160px-Rick_Sanchez.png', Validators.required);
+
+    this.identifier = new FormGroup({
+      isbn10: this.isbn10,
+      isbn13: this.isbn13,
+      isbnother: this.isbnother
+    }, oneRequired([this.isbn10, this.isbn13, this.isbnother]));
 
     this.newBookForm = new FormGroup({
       title: this.title,
       subtitle: this.subtitle,
       bookDisplayNumber: this.bookDisplayNumber,
+      bookSeriesName: this.bookSeriesName,
       authors: this.authors,
       publisher: this.publisher,
       publishedDate: this.publishedDate,
       maturityRating: this.maturityRating,
-      isbn10: this.isbn10,
-      isbn13: this.isbn13,
-      isbnother: this.isbnother,
+      identifier: this.identifier,
       pageCount: this.pageCount,
       categories: this.categories,
       description: this.description,
@@ -193,11 +199,11 @@ export class BookAddNewBookReactComponent implements OnInit {
       smallthumbnail: this.smallthumbnail
     });
 
-    this.identiferGroup = new FormGroup({
-      isbn10: this.isbn10,
-      isbn13: this.isbn13,
-      isbnother: this.isbnother
-    });
+    //this.identiferGroup = new FormGroup({
+    //  isbn10: this.isbn10,
+    //  isbn13: this.isbn13,
+    //  isbnother: this.isbnother
+    //}, oneRequired);
 
   }
 

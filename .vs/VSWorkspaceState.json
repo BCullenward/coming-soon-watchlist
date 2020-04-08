@@ -5,10 +5,9 @@
     "\\src\\app",
     "\\src\\app\\books",
     "\\src\\app\\books\\book-addnewbook",
-    "\\src\\app\\books\\book-details",
-    "\\src\\app\\books\\nav-books",
+    "\\src\\app\\books\\shared",
     "\\src\\dataaccess"
   ],
-  "SelectedNode": "\\src\\app\\books\\book-addnewbook\\book-addnewbook-react.component.ts",
+  "SelectedNode": "\\src\\app\\books\\shared\\one-required.validator.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import {
   BookRouteActivator,
   AddBookWatchitemComponent,
@@ -10,13 +11,16 @@ import {
   BooksHeaderComponent,
   MyBookWatchitemsComponent,
   BookAddNewBookComponent,
-  BookAddNewBookReactComponent
+  BookAddNewBookReactComponent,
+  SalesInfoComponent
 } from './index';
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksResolver } from './books-resolver.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DigitOnlyModule } from '../common/digit-only.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AngularMaterialModule } from '../angular-material.module';
 
 
 @NgModule({
@@ -26,7 +30,10 @@ import { DigitOnlyModule } from '../common/digit-only.module';
     FormsModule,
     ReactiveFormsModule,
     DigitOnlyModule,
-    NgSelectModule
+    NgSelectModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    AngularMaterialModule
   ],
   declarations: [
     NavBooksComponent,
@@ -37,7 +44,8 @@ import { DigitOnlyModule } from '../common/digit-only.module';
     BooksHeaderComponent,
     MyBookWatchitemsComponent,
     BookAddNewBookComponent,
-    BookAddNewBookReactComponent
+    BookAddNewBookReactComponent,
+    SalesInfoComponent
   ],
   providers: [
     BookRouteActivator,

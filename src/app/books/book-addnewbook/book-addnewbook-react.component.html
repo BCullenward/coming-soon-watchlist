@@ -3,80 +3,90 @@
 <hr>
 <div class="col-md-6">
   <form [formGroup]="newBookForm" (ngSubmit)="saveBook(newBookForm.value)" autocomplete="off">
-    <!-- Title -->
-    <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty}">
-      <label for="title">Title:</label>
-      <em *ngIf="title.invalid && title.dirty">Required</em>
-      <input formControlName="title" name="title" id="title" type="text" class="form-control" placeholder="Title of book..." />
-    </div>
+    <fieldset>
+      <!-- Title -->
+      <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty}">
+        <label for="title">Title:</label>
+        <em *ngIf="title.invalid && title.dirty">Required</em>
+        <input formControlName="title" name="title" id="title" type="text" class="form-control" placeholder="Title of book..." />
+      </div>
 
-    <!-- Subtitle -->
-    <div class="form-group">
-      <label for="subtitle">Subtitle:</label>
-      <input formControlName="subtitle" name="subtitle" id="subtitle" type="text" class="form-control" placeholder="Subtitle of book..." />
-    </div>
+      <!-- Subtitle -->
+      <div class="form-group">
+        <label for="subtitle">Subtitle:</label>
+        <input formControlName="subtitle" name="subtitle" id="subtitle" type="text" class="form-control" placeholder="Subtitle of book..." />
+      </div>
 
-    <!-- Series number -->
-    <div class="form-group">
-      <label for="bookDisplayNumber">Book Series Number:</label>
-      <input formControlName="bookDisplayNumber" name="bookDisplayNumber" id="bookDisplayNumber" type="text" class="form-control" digitOnly maxlength="2" placeholder="Series Number..." />
-    </div>
+      <!-- Series number -->
+      <div class="form-group">
+        <label for="bookDisplayNumber">Series Number:</label>
+        <input formControlName="bookDisplayNumber" name="bookDisplayNumber" id="bookDisplayNumber" type="text" class="form-control" digitOnly maxlength="2" placeholder="Series Number..." />
+      </div>
+
+      <div class="form-group">
+        <label for="bookSeriesName">Series Name:</label>
+        <input formControlName="bookSeriesName" name="bookSeriesName" id="bookSereisName" type="text" class="form-control" placeholder="Series Name..." />
+      </div>
+    </fieldset>
 
     <!-- Authors -->
-    <div class="form-group" [ngClass]="{'error': authors.invalid && authors.dirty}">
-      <label for="authors">Author(s):</label>
-      <em *ngIf="authors.invalid && authors.dirty">Required</em>
-      <input formControlName="authors" name="authors" type="text" id="authors" class="form-control" placeholder="Author(s) of book (Put in Comma Separted List if more than one)..." />
-    </div>
+    <fieldset>
+      <div class="form-group" [ngClass]="{'error': authors.invalid && authors.dirty}">
+        <label for="authors">Author(s):</label>
+        <em *ngIf="authors.invalid && authors.dirty">Required</em>
+        <input formControlName="authors" name="authors" type="text" id="authors" class="form-control" placeholder="Author(s) of book (Put in Comma Separted List if more than one)..." />
+      </div>
+    </fieldset>
 
-    <!-- Publisher -->
-    <div class="form-group" [ngClass]="{'error': publisher.invalid && publisher.dirty}">
-      <label for="publisher">Publisher:</label>
-      <em *ngIf="publisher.invalid && publisher.dirty">Required</em>
-      <input formControlName="publisher" name="publisher" id="publisher" type="text" class="form-control" placeholder="Publisher of book..." />
-    </div>
+    <fieldset>
+      <!-- Publisher -->
+      <div class="form-group" [ngClass]="{'error': publisher.invalid && publisher.dirty}">
+        <label for="publisher">Publisher:</label>
+        <em *ngIf="publisher.invalid && publisher.dirty">Required</em>
+        <input formControlName="publisher" name="publisher" id="publisher" type="text" class="form-control" placeholder="Publisher of book..." />
+      </div>
 
-    <!-- Published Date -->
-    <div class="form-group" [ngClass]="{'error': publishedDate.invalid && publishedDate.dirty}">
-      <label for="publishedDate">Published Date:</label>
-      <em *ngIf="publishedDate.invalid && publishedDate.dirty">Required</em>
-      <input formControlName="publishedDate" name="publishedDate" id="publishedDate" type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
-    </div>
+      <!-- Published Date -->
+      <div class="form-group" [ngClass]="{'error': publishedDate.invalid && publishedDate.dirty}">
+        <label for="publishedDate">Published Date:</label>
+        <em *ngIf="publishedDate.invalid && publishedDate.dirty">Required</em>
+        <input formControlName="publishedDate" name="publishedDate" id="publishedDate" type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
+      </div>
+    </fieldset>
+
 
     <!-- Maturity Rating-->
-    <div class="form-group">
-      <label for="maturityRating">Has Mature Rating:</label>
-      <input formControlName="maturityRating" id="maturityRating" type="checkbox" (change)="onMaturityChange($event.target.checked)" class="form-control" />
-    </div>
+    <fieldset>
+      <div class="form-group">
+        <label for="maturityRating">Has Mature Rating:</label>
+        <input formControlName="maturityRating" id="maturityRating" type="checkbox" (change)="onMaturityChange($event.target.checked)" class="form-control" />
+      </div>
+    </fieldset>
 
     <!-- ISBN10 -->
-    <div class="form-group">
-      <label for="isbn10">ISBN10:</label>
-      <em *ngIf="isbn10.invalid && isbn10.dirty && isbn10?.errors.specificLength">Must be {{ isbn10.errors.specificLength }} characters</em>
-      <em *ngIf="isbn10.invalid && isbn10.dirty && isbn10?.errors.oneRequired
-          && isbn13.invalid && isbn13?.errors.oneRequired
-          && isbnother.invalid && isbnother?.errors.oneRequired">At least one required</em>
-      <input formControlName="isbn10" id="isbn10" type="text" class="form-control" placeholder="enter ISBN10..." />
-    </div>
+    <fieldset formGroupName="identifier" display:block>
+      <div class="form-group">
+        <label for="isbn10">ISBN10:</label>
+        <em *ngIf="isbn10.invalid && isbn10.dirty && isbn10?.errors.specificLength">Must be {{ isbn10.errors.specificLength }} characters</em>
+        <em *ngIf="identifier?.errors?.oneRequired"> {{ identifier.errors.oneRequired }}</em>
+        <input formControlName="isbn10" id="isbn10" type="text" class="form-control" placeholder="enter ISBN10..." />
+      </div>
 
-    <!-- ISBN13 -->
-    <div class="form-group">
-      <label for="isbn13">ISBN13:</label>
-      <em *ngIf="isbn13.invalid && isbn13.dirty && isbn13?.errors.specificLength">Must be {{ isbn13.errors.specificLength }} characters</em>
-      <em *ngIf="isbn10.invalid && isbn10?.errors.oneRequired
-          && isbn13.invalid && isbn13.dirty && isbn13?.errors.oneRequired
-          && isbnother.invalid && isbnother?.errors.oneRequired">At least one required</em>
-      <input formControlName="isbn13" id="isbn13" type="text" class="form-control" placeholder="enter ISBN13..." />
-    </div>
+      <!-- ISBN13 -->
+      <div class="form-group">
+        <label for="isbn13">ISBN13:</label>
+        <em *ngIf="isbn13.invalid && isbn13.dirty && isbn13?.errors.specificLength">Must be {{ isbn13.errors.specificLength }} characters</em>
+        <em *ngIf="identifier?.errors?.oneRequired"> {{ identifier.errors.oneRequired }}</em>
+        <input formControlName="isbn13" id="isbn13" type="text" class="form-control" placeholder="enter ISBN13..." />
+      </div>
 
-    <!-- ISBNOTHER -->
-    <div class="form-group">
-      <label for="isbnother">OTHER IDENTIFIER:</label>
-      <em *ngIf="isbn10.invalid && isbn10?.errors.oneRequired
-          && isbn13.invalid && isbn13?.errors.oneRequired
-          && isbnother.invalid && isbnother.dirty && isbnother?.errors.oneRequired">At least one required</em>
-      <input formControlName="isbnother" id="isbnother" type="text" class="form-control" placeholder="enter Other Identifier..." />
-    </div>
+      <!-- ISBNOTHER -->
+      <div class="form-group">
+        <label for="isbnother">OTHER IDENTIFIER:</label>
+        <em *ngIf="identifier?.errors?.oneRequired"> {{ identifier.errors.oneRequired }}</em>
+        <input formControlName="isbnother" id="isbnother" type="text" class="form-control" placeholder="enter Other Identifier..." />
+      </div>
+    </fieldset>
 
     <!-- Page Count -->
     <div class="form-group" [ngClass]="{'error': pageCount.invalid && pageCount.dirty}">
@@ -88,6 +98,7 @@
     <!-- Categories -->
     <div class="form-group">
       <label for="categories">Categories:</label>
+      <em *ngIf="categories.invalid && categories.dirty">Required</em>
       <select multiple formControlName="categories" name="categories" id="categories" class="select">
         <option *ngFor="let category of categorylist" [value]="category.name">{{category.name}}</option>
       </select>

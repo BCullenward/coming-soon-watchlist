@@ -17,6 +17,15 @@ input {
     float: left;
 }
 
+input[type-text] {
+    display: block;
+}
+
+fieldset {
+    border: none;
+
+}
+
 input[type-button] {
     float: none;
 }

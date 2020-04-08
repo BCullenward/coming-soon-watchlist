@@ -1,8 +1,32 @@
 <div>
   All Books:
   <br />
-  <div *ngFor="let book of books">
+  <!--<div class="spinner" [ngClass]="{ 'hidden': !loading }">-->
+    <!--<pagination-controls (pageChange)="getPage($event)"></pagination-controls>-->
+    <!--<mat-paginator (page)="pageEvent = $event; onPageChange($event)"
+                 [length]="100"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5,10,25]"
+                 showFirstLastButtons>
+  </mat-paginator>-->
+
+    <!--<mat-paginator (page)="pageEvent = $event"
+                   [length]="total"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   showFirstLastButtons>
+    </mat-paginator>-->
+
+    <div *ngFor="let book of currentBooksToShow">
+    <book-thumbnail [book]="book"></book-thumbnail>
+  </div>
+
+    <!--
+  <div *ngFor="let book of asyncBooks | async | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
     <book-thumbnail (click)="handleThumbnailClick(book.volumeInfo.title)" [book]="book"></book-thumbnail>
   </div>
+  -->
+  <!--</div>-->
+
   <h5>Powered by Google Books API.  Please re-enable.  1000 hits a day limit and 100 an hour.</h5>
 </div>

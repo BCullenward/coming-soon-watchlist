@@ -8,12 +8,13 @@ import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/error404.component';
 import { AuthService } from './users/auth.service';
 import { MainComponent } from './main.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
   ],
   declarations: [
     WatchlistAppComponent,

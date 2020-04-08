@@ -41,44 +41,48 @@ export interface IBook {
       volumeSeries?: IVolumeSeries[]
     }
   },
-  saleInfo?: {
-    country?: string,
-    saleability?: string,
-    isEbook?: boolean,
-    listPrice?: {
-      amount?: number,
-      currencyCode?: string
-    },
-    retailPrice?: {
-      amount?: number,
-      currencyCode?: string,
-    },
-    buyLink?: string,
-    offers?: IOffers[],
-  },
-  accessInfo?: {
-    country?: string,
-    viewability?: string,
-    embeddable?: boolean,
-    publicDomain?: boolean,
-    textToSpeechPermission?: string,
-    epub?: {
-      isAvailable?: boolean,
-      acsTokenLink?: string
-    },
-    pdf?: {
-      isAvailable?: boolean,
-      acsTokenLink?: string
-    },
-    webReaderLink?: string,
-    accessViewStatus?: string,
-    quoteSharingAllowed?: boolean
-  },
+  saleInfo?: ISaleInfo,
+  accessInfo?: IAccessInfo,
   searchInfo?: {
     textSnippet?: string
   }
 }
 
+export interface IAccessInfo {
+  country?: string,
+  viewability?: string,
+  embeddable?: boolean,
+  publicDomain?: boolean,
+  textToSpeechPermission?: string,
+  epub?: {
+    isAvailable?: boolean,
+    acsTokenLink?: string
+  },
+  pdf?: {
+    isAvailable?: boolean,
+    acsTokenLink?: string
+  },
+  webReaderLink?: string,
+  accessViewStatus?: string,
+  quoteSharingAllowed?: boolean
+}
+
+
+export interface ISaleInfo {
+  country?: string,
+  saleability?: string,
+  isEbook?: boolean,
+  listPrice?: {
+    amount?: number,
+    currencyCode?: string
+  },
+  retailPrice?: {
+    amount?: number,
+    currencyCode?: string,
+  },
+  buyLink?: string,
+  offers?: IOffers[],
+}
 
 export interface IOffers {
   finskyOfferType?: number,
