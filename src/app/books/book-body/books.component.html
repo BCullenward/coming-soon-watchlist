@@ -10,14 +10,14 @@
                  showFirstLastButtons>
   </mat-paginator>-->
 
-    <!--<mat-paginator (page)="pageEvent = $event"
+  <mat-paginator (page)="getData($event)"
                    [length]="total"
                    [pageSize]="pageSize"
                    [pageSizeOptions]="pageSizeOptions"
                    showFirstLastButtons>
-    </mat-paginator>-->
+    </mat-paginator>
 
-    <div *ngFor="let book of currentBooksToShow">
+    <div *ngFor="let book of asyncBooks | async | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
     <book-thumbnail [book]="book"></book-thumbnail>
   </div>
 
