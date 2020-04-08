@@ -24,7 +24,7 @@ export class BooksComponent implements OnInit {
   asyncBooks: Observable<IBook[]>;
   p: number = 1;
   total: number;
-  loading: boolean;
+  loading: boolean = true;
   currentBooksToShow = [];
 
   //// MatPaginator Inputs
@@ -44,70 +44,36 @@ export class BooksComponent implements OnInit {
     this.loading = true;
     this.getAllBooks();
     this.getPage(1);
-
-   // this.getPage(1);
-    //this.currentBooksToShow = this.books.slice(0, this.pageSize);
-    //console.log("current books: ", this.currentBooksToShow);
-
-    //this.books = this.route.snapshot.data['books'];
-    //this.getPage(1);
-    //this.getBooks();
-    //this.onPageChange(1);
-    //console.log("current books 2: ", this.currentBooksToShow);
   }
 
   getPage(page: number) {
     this.loading = true;
 
-    this.asyncBooks = serverCall(this.books, page).pipe(
+    this.asyncBooks = serverCall(this.books, page, this.pageSize).pipe(
       tap(res => {
         this.total = res.total;
         this.p = page;
       }), map(res => res.items)
     );
-
-    console.log("total: ", this.total);
     this.loading = false;
   }
 
   getData(e) {
-    //console.log("e: ", e);
+    if (e.pageSize != this.pageSize) {
+      this.pageSize = e.pageSize;
+      this.getPage(0);
+    }
+    console.log("e: ", e);
     this.getPage(e.pageIndex + 1);
   }
-
-
-  //onPageChange($event) {
-  //  this.currentBooksToShow = this.books.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
-  //}
-
-  //onPaginateChange(data) {
-  //  this.currentBooksToShow = this.books.slice(0, data.pageSize);
-  //}
-
-  //getPage3(page: number) {
-  //  this.loading = true;
-
-  //  this.asyncBooks = serverCall(this.books, page).pipe(
-  //    tap(res => {
-  //      this.total = res.total;
-  //      this.p = page;
-  //      this.loading = false;
-  //    }),
-  //    map(res => res.items)
-  //  );
-
-
-  //  console.log("total: ", this.total);
-  //  console.log("async: ", this.asyncBooks);
-  //}
 
   handleThumbnailClick(bookTitle) {
     this.toastr.success(bookTitle);
   }
 
-  //setPageSizeOptions(setPageSizeOptionsInput: string) {
-  //  this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  //}
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
 
   getAllBooks() {
     this.books = this.route.snapshot.data['books'];
@@ -116,15 +82,15 @@ export class BooksComponent implements OnInit {
 }
 
 /** Simulate async HTTP call with delayed observable **/
-function serverCall(books: IBook[], page: number): Observable<IServerResponse> {
-  const perPage = 10;
+function serverCall(books: IBook[], page: number, pageSize: number): Observable<IServerResponse> {
+  const perPage = pageSize;
   const start = (page - 1) * perPage;
   const end = start + perPage;
-  let secs: number = 10 * 1000;
+  let secs: number = 1 * 1000;
 
   //console.log("list: ", books.slice(start, end));
   return of({
     items: books.slice(start, end),
     total: books.length
-  }).pipe(delay(1000));
+  }).pipe(delay(100));
 }
