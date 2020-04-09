@@ -1,25 +1,26 @@
-<div>
-  All Books:
-  <br />
-  <div class="spinner" *ngIf="!loading">
-  <mat-paginator #paginator
-      (page)="getData($event)"
-      [length]="total"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      showFirstLastButtons>
-    </mat-paginator>
+<div ngClass="{'hidden':!loading}">
+    All Books:
+    <br />
+    <div class="spinner">
+      <!--<mat-paginator [length]="30"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5,10,25,100]">
+      </mat-paginator>-->
 
-    <div *ngFor="let book of asyncBooks | async | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
-    <book-thumbnail [book]="book"></book-thumbnail>
-  </div>
+      <mat-paginator
+                   [length]="total"
+                   [pageIndex]="currentPage"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   showFirstLastButtons
+                   (page)="handlePage($event)">
+      </mat-paginator>
 
-    <!--
-  <div *ngFor="let book of asyncBooks | async | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }">
-    <book-thumbnail (click)="handleThumbnailClick(book.volumeInfo.title)" [book]="book"></book-thumbnail>
-  </div>
-  -->
-  </div>
+      <div *ngFor="let book of booksToDisplay">
+        <book-thumbnail (click)="handleThumbnailClick(book.volumeInfo.title)" [book]="book"></book-thumbnail>
+      </div>
 
-  <h5>Powered by Google Books API.  Please re-enable.  1000 hits a day limit and 100 an hour.</h5>
-</div>
+    </div>
+
+    <h5>Powered by Google Books API.  Please re-enable.  1000 hits a day limit and 100 an hour.</h5>
+  </div>

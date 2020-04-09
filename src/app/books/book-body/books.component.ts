@@ -1,96 +1,77 @@
-// Server pagination example from michaelbromely.github.io/ngx-pagination/#/server-paging
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ToastrService } from '../../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
-import { IBook } from '../shared/index';
-import { Observable, of } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
-import { PageEvent } from '@angular/material';
-
-interface IServerResponse {
-  items: IBook[];
-  total: number;
-}
+import { IBook, BookService } from '../shared/index';
+import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
 
 
 @Component({
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./books.component.css']
 })
 
-export class BooksComponent implements OnInit {
-  books: IBook[] = [];
-  asyncBooks: Observable<IBook[]>;
-  p: number = 1;
-  total: number;
-  loading: boolean = true;
-  currentBooksToShow = [];
+export class BooksComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  //// MatPaginator Inputs
-  //length = 100;
-  pageSize = 10;
-  pageSizeOptions = [5, 10, 25, 100];
+  books: IBook[] = [];
+  booksToDisplay: IBook[] = [];
   pageEvent: PageEvent;
+  pageSize: number = 5;
+  pageSizeOptions: number[] = [5,10,25,100]
+  currentPage: number = 0;
+  loading: boolean = true;
+  dataSource: any;
+  total: number;
+
+  length = 100;
 
 
   constructor(
     private toastr: ToastrService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private bksrv: BookService) {
   }
 
 
   ngOnInit() {
-    this.loading = true;
+    this.loading = true
     this.getAllBooks();
-    this.getPage(1);
   }
 
-  getPage(page: number) {
-    this.loading = true;
-
-    this.asyncBooks = serverCall(this.books, page, this.pageSize).pipe(
-      tap(res => {
-        this.total = res.total;
-        this.p = page;
-      }), map(res => res.items)
-    );
-    this.loading = false;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
-  getData(e) {
-    if (e.pageSize != this.pageSize) {
+  public handlePage(e?: PageEvent) {
+    //console.log("e: ", e);
+    if (e) {
       this.pageSize = e.pageSize;
-      this.getPage(0);
+      this.currentPage = e.pageIndex;
     }
-    console.log("e: ", e);
-    this.getPage(e.pageIndex + 1);
+    this.iterator();
+  }
+
+  iterator() {
+    const end = (this.currentPage + 1) * this.pageSize;
+    const start = this.currentPage * this.pageSize;
+    this.booksToDisplay = this.books.slice(start, end);
+    this.dataSource = this.booksToDisplay;
   }
 
   handleThumbnailClick(bookTitle) {
     this.toastr.success(bookTitle);
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  }
 
   getAllBooks() {
-    this.books = this.route.snapshot.data['books'];
+    this.bksrv.getBooks()
+      .subscribe((response) => {
+        this.dataSource = new MatTableDataSource<IBook>(response);
+        this.dataSource.paginator = this.paginator;
+        this.books = response;
+        this.total = this.books.length;
+        this.handlePage(null);
+      });
   }
 
-}
-
-/** Simulate async HTTP call with delayed observable **/
-function serverCall(books: IBook[], page: number, pageSize: number): Observable<IServerResponse> {
-  const perPage = pageSize;
-  const start = (page - 1) * perPage;
-  const end = start + perPage;
-  let secs: number = 1 * 1000;
-
-  //console.log("list: ", books.slice(start, end));
-  return of({
-    items: books.slice(start, end),
-    total: books.length
-  }).pipe(delay(100));
 }

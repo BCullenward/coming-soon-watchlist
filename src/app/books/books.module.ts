@@ -19,8 +19,8 @@ import { BooksResolver } from './books-resolver.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DigitOnlyModule } from '../common/digit-only.module';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularMaterialModule } from '../angular-material.module';
+import { MatPaginatorModule } from '@angular/material';
 
 
 @NgModule({
@@ -32,8 +32,8 @@ import { AngularMaterialModule } from '../angular-material.module';
     DigitOnlyModule,
     NgSelectModule,
     HttpClientModule,
-    NgxPaginationModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    MatPaginatorModule
   ],
   declarations: [
     NavBooksComponent,
@@ -54,6 +54,9 @@ import { AngularMaterialModule } from '../angular-material.module';
       useValue: checkDirtyState
     },
     BooksResolver
+  ],
+  exports: [
+    MatPaginatorModule
   ]
 })
 export class BooksModule { }

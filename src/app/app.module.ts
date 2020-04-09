@@ -9,12 +9,16 @@ import { Error404Component } from './errors/error404.component';
 import { AuthService } from './users/auth.service';
 import { MainComponent } from './main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+    MatPaginatorModule,
+    AngularMaterialModule
   ],
   declarations: [
     WatchlistAppComponent,
@@ -25,6 +29,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     ToastrService,
     AuthService
+  ],
+  exports: [
+    MatPaginatorModule
   ],
   bootstrap: [WatchlistAppComponent]
 })
