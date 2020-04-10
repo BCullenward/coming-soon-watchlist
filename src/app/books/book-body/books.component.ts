@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ToastrService } from '../../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
 import { IBook, BookService } from '../shared/index';
-import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
-
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   templateUrl: './books.component.html',
@@ -20,7 +19,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   pageSizeOptions: number[] = [5,10,25,100]
   currentPage: number = 0;
   loading: boolean = true;
-  dataSource: any;
+  dataSource: any = [];
   total: number;
 
   length = 100;
@@ -66,7 +65,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   getAllBooks() {
     this.bksrv.getBooks()
       .subscribe((response) => {
-        this.dataSource = new MatTableDataSource<IBook>(response);
+        this.dataSource = response;
         this.dataSource.paginator = this.paginator;
         this.books = response;
         this.total = this.books.length;
