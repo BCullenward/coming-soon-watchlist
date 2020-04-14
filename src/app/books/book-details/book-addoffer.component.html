@@ -10,7 +10,7 @@
       <select formControlName="offerType" class="form-control">
         <option value="">select offer type...</option>
         <option value="1">New Physical</option>
-        <option value="2">New Digital</option>
+        <option value="2">Digital</option>
         <option value="3">Used</option>
       </select>
     </div>
@@ -51,6 +51,13 @@
         <option value="AUD">AUD</option>
         <option value="GBP">GBP</option>
       </select>
+    </div>
+
+    <!-- Buy Link-->
+    <div class="form-group">
+      <label for="buyLink">Buy Link:</label>
+      <em *ngIf="buyLink.invalid && buyLink.dirty">Required</em>
+      <input formControlName="buyLink" name="buyLink" id="buyLink" type="text" class="form-control" placeholder="Buy Link..." />
     </div>
 
     <button type="submit" [disabled]="newOfferForm.invalid" class="btn btn-primary">Save</button>

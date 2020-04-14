@@ -96,6 +96,7 @@ export interface IOffers {
     amountInMicros?: number,
     currencyCode?: string
   },
+  buyLink?: string,
   giftable?: boolean
 }
 

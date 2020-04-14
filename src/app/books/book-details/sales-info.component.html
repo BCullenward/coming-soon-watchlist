@@ -1,18 +1,29 @@
-<div class="row">
-  <div class="col-md-10">
-    <div class="well">
-      <h4> List Price: {{ saleInfo.listPrice?.amount | currency }} : {{ saleInfo.listPrice?.currencyCode }} </h4>
-      <h4> Retail Price: {{ saleInfo.retailPrice?.amount | currency }} : {{ saleInfo.retailPrice?.currencyCode }} </h4>
-
-      <div class="row" *ngFor="let offer of saleInfo.offers">
-        <div class="col-md-10">
-          <div class="well">
-            <h4> Offer: {{ offer?.finskyOfferType }} </h4>
-            <h4> List Price: {{ offer?.listPrice?.amountInMicros / 1000000 | currency}} : {{ offer.listPrice?.currencyCode }} </h4>
-            <h4> Retail Price: {{ offer.retailPrice?.amountInMicros / 1000000 | currency }} : {{ offer.retailPrice?.currencyCode }} </h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="well">
+  <table>
+    <tr>
+      <td>List Price:</td>
+      <td>{{ saleInfo.listPrice?.amount | currency }} {{ saleInfo.listPrice?.currencyCode }}</td>
+      <td></td>
+      <td>Retail Price:</td>
+      <td></td>
+      <td>{{ saleInfo.retailPrice?.amount | currency }} {{ saleInfo.retailPrice?.currencyCode }}</td>
+    </tr>
+  </table>
+</div>
+<br />
+<div class="well">
+  <table>
+    <tr>
+      <td>Offer Type</td>
+      <td>List Price</td>
+      <td>Retail Price</td>
+      <td>Link</td>
+    </tr>
+    <tr *ngFor="let offer of saleInfo.offers">
+      <td>{{ getOffer(offer?.finskyOfferType) }}</td>
+      <td>{{ getAmountInDollars(offer?.listPrice?.amountInMicros) | currency }} {{ offer.listPrice?.currencyCode }}</td>
+      <td>{{ getAmountInDollars(offer.retailPrice?.amountInMicros) | currency }} {{ offer.retailPrice?.currencyCode }}</td>
+      <td><a href="{{ offer?.buyLink }}">{{ offer?.buyLink }}</a></td>
+    </tr>
+  </table>
 </div>

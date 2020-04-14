@@ -21,3 +21,6 @@
   border-top-color: #555;
 }
 
+a {
+    cursor: pointer;
+}

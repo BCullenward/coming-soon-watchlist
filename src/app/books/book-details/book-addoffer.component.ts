@@ -16,6 +16,7 @@ export class BookAddOfferComponent implements OnInit {
   listPriceCurrencyCode: FormControl;
   retailPrice: FormControl;
   retailPriceCurrencyCode: FormControl;
+  buyLink: FormControl;
 
   constructor() { }
 
@@ -32,13 +33,14 @@ export class BookAddOfferComponent implements OnInit {
       id: undefined,
       finskyOfferType: +formValues.offerType,
       listPrice: {
-        amountInMicros: formValues.listPrice * 1000000,
+        amountInMicros: this.getPriceInMicros(formValues.listPrice),
         currencyCode: formValues.listPriceCurrencyCode
       },
       retailPrice: {
-        amountInMicros: formValues.retailPrice * 1000000,
+        amountInMicros: this.getPriceInMicros(formValues.retailPrice),
         currencyCode: formValues.retailPriceCurrencyCode
       },
+      buyLink: formValues.buyLink,
       giftable: true
     };
 
@@ -47,20 +49,31 @@ export class BookAddOfferComponent implements OnInit {
     this.saveNewOffer.emit(offer);
   }
 
+  getPriceInMicros(price) {
+    if (price)
+      return price * 1000000;
+  }
+
   getNewOffer() {
     this.offerType = new FormControl(1, Validators.required);
     this.listPrice = new FormControl('', Validators.required);
     this.listPriceCurrencyCode = new FormControl('', Validators.required);
     this.retailPrice = new FormControl('', Validators.required);
     this.retailPriceCurrencyCode = new FormControl('', Validators.required);
+    this.buyLink = new FormControl('', Validators.required);
 
     this.newOfferForm = new FormGroup({
       offerType: this.offerType,
       listPrice: this.listPrice,
       listPriceCurrencyCode: this.listPriceCurrencyCode,
       retailPrice: this.retailPrice,
-      retailPriceCurrencyCode: this.retailPriceCurrencyCode
+      retailPriceCurrencyCode: this.retailPriceCurrencyCode,
+      buyLink: this.buyLink
     });
+  }
+
+  getLink(buyLink) {
+
   }
 
 }

@@ -59,9 +59,12 @@ export class BookDetailsComponent implements OnInit {
   }
 
   saveNewOffer(offer: IOffers) {
-    const nextId = Math.max.apply(null, this.book.saleInfo.offers.map(o => o.id));
+    let nextId = Math.max.apply(null, this.book.saleInfo.offers.map(o => o.id));
+    if (!nextId)
+      nextId = 0;
     offer.id = nextId + 1;
-    console.log("nextId: ", nextId);
+
     this.book.saleInfo.offers.push(offer);
+    this.addMode = false;
   }
 }

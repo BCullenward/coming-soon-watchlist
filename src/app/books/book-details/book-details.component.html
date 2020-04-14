@@ -52,7 +52,7 @@
     </div>
   </div>
   <hr class="well-line" />
-  <book-salesinfo *ngIf="!addMode" (saveNewOffer)="saveNewOffer($event)" [saleInfo]="book?.saleInfo"></book-salesinfo>
-  <book-addoffer *ngIf="addMode"></book-addoffer>
+  <book-salesinfo *ngIf="!addMode" [saleInfo]="book?.saleInfo"></book-salesinfo>
+  <book-addoffer *ngIf="addMode" (saveNewOffer)="saveNewOffer($event)"></book-addoffer>
   <hr />
 </div>
