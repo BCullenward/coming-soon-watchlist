@@ -12,7 +12,8 @@ import {
   MyBookWatchitemsComponent,
   BookAddNewBookComponent,
   BookAddNewBookReactComponent,
-  SalesInfoComponent
+  SalesInfoComponent,
+  BookAddOfferComponent
 } from './index';
 import { BooksRoutingModule } from './books-routing.module';
 import { BooksResolver } from './books-resolver.service';
@@ -21,7 +22,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DigitOnlyModule } from '../common/digit-only.module';
 import { AngularMaterialModule } from '../angular-material.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 
 @NgModule({
   imports: [
@@ -45,7 +45,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MyBookWatchitemsComponent,
     BookAddNewBookComponent,
     BookAddNewBookReactComponent,
-    SalesInfoComponent
+    SalesInfoComponent,
+    BookAddOfferComponent
   ],
   providers: [
     BookRouteActivator,

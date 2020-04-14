@@ -1,0 +1,30 @@
+em {
+  float: right;
+  color: #FF1C15;
+  padding-left: 10px;
+}
+
+.error input, .error select, .error textarea {
+  background-color: #E38385;
+}
+
+.error ::-webkit-input-placeholder {
+  color: #999;
+}
+
+.error ::-moz-placeholder {
+  color: #999;
+}
+
+.error :-moz-placeholder {
+  color: #999;
+}
+
+.error :ms-input-placeholder {
+  color: #999;
+}
+
+.well-line {
+  background-color: #555;
+  border-top-color: #555;
+}

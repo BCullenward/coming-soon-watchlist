@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../shared/book.service';
 import { ActivatedRoute } from '@angular/router';
-import { IBook } from '../shared/index';
+import { IBook, IOffers } from '../shared/index';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -13,6 +13,7 @@ export class BookDetailsComponent implements OnInit {
   ISBN13: string;
   ISBN10: string;
   ISBNOTHER: string;
+  addMode: boolean = false;
 
   constructor(private bookService: BookService, private route:ActivatedRoute, public httpClient: HttpClient) { }
 
@@ -53,28 +54,14 @@ export class BookDetailsComponent implements OnInit {
     }
   }
 
-  //getContent(subs: Array<string>): Observable<IContent> {
-  //  return (() => {
-  //    return this.http.get<IContent>((() => {
-  //      let r = this.root;
-  //      subs.forEach((s, i, a) => {
-  //        if (i === a.length - 1) {
-  //          r += s;
-  //        }
-  //        else {
-  //          if (s !== '/') {
-  //            r += s;
-  //          }
-  //        }
-  //      });
-  //      return r;
-  //    })(), {
-  //      headers: this.corsHeaders
-  //    });
+  addOffer() {
+    this.addMode = true;
+  }
 
-  //  })();
-  //}
-
-
-
+  saveNewOffer(offer: IOffers) {
+    const nextId = Math.max.apply(null, this.book.saleInfo.offers.map(o => o.id));
+    offer.id = nextId + 1;
+    console.log("nextId: ", nextId);
+    this.book.saleInfo.offers.push(offer);
+  }
 }

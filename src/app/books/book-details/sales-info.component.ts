@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ISaleInfo } from '../shared/index';
 
 @Component({
-  selector: 'book-dets',
+  selector: 'book-salesinfo',
   templateUrl: './sales-info.component.html',
   styleUrls: ['./sales-info.component.css']
 })

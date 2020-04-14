@@ -1,0 +1,60 @@
+<h1>New Offer</h1>
+<hr class="well-line" />
+<div class="col-md-6">
+  <form [formGroup]="newOfferForm" (ngSubmit)="saveOffer(newOfferForm.value)" autocomplete="off">
+    <!-- Offer Type -->
+    <div class="form-group">
+      <!--[ngClass]="{'error': title.invalid && title.dirty}">-->
+      <label for="offerType">Offer Type:</label>
+      <em *ngIf="offerType.invalid && offerType.dirty">Required</em>
+      <select formControlName="offerType" class="form-control">
+        <option value="">select offer type...</option>
+        <option value="1">New Physical</option>
+        <option value="2">New Digital</option>
+        <option value="3">Used</option>
+      </select>
+    </div>
+
+    <!-- List Price -->
+    <div class="form-group">
+      <label for="listPrice">List Price:</label>
+      <em *ngIf="listPrice.invalid && listPrice.dirty">Required</em>
+      <input formControlName="listPrice" name="listPrice" id="listPrice" type="text" class="form-control" placeholder="List Price..." />
+    </div>
+
+    <!-- List Price Currency Type -->
+    <div class="form-group">
+      <label for="listPriceCurrencyCode">List Price Currency Code:</label>
+      <em *ngIf="listPriceCurrencyCode.invalid && listPriceCurrencyCode.dirty">Required</em>
+      <select formControlName="listPriceCurrencyCode" class="form-control">
+        <option value="">select List Price Currency Code...</option>
+        <option value="USD">USD</option>
+        <option value="AUD">AUD</option>
+        <option value="GBP">GBP</option>
+      </select>
+    </div>
+
+    <!-- Retail Price -->
+    <div class="form-group">
+      <label for="retailPrice">Retail Price:</label>
+      <em *ngIf="retailPrice.invalid && retailPrice.dirty">Required</em>
+      <input formControlName="retailPrice" name="retailPrice" id="retailPrice" type="text" class="form-control" placeholder="Retail Price..." />
+    </div>
+
+    <!-- Retail Price Currency Type -->
+    <div class="form-group">
+      <label for="retailPriceCurrencyCode">Retail Price Currency Code:</label>
+      <em *ngIf="retailPriceCurrencyCode.invalid && retailPriceCurrencyCode.dirty">Required</em>
+      <select formControlName="retailPriceCurrencyCode" class="form-control">
+        <option value="">select Retail Price Currency Code...</option>
+        <option value="USD">USD</option>
+        <option value="AUD">AUD</option>
+        <option value="GBP">GBP</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="newOfferForm.invalid" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+  </form>
+</div>
+

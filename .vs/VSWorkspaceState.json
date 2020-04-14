@@ -2,13 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
     "\\src\\app\\books",
     "\\src\\app\\books\\book-body",
-    "\\src\\app\\books\\book-details",
-    "\\src\\app\\books\\book-thumbnail",
     "\\src\\dataaccess"
   ],
-  "SelectedNode": "\\src\\app\\books\\book-details\\book-details.component.ts",
+  "SelectedNode": "\\package-lock.json",
   "PreviewInSolutionExplorer": false
 }

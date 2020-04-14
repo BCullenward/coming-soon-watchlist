@@ -6,6 +6,13 @@
   background-color: #555;
 }
 
+.navbar-nav,
+.container-fluid,
+.navbar-collapse {
+  background-color: #555;
+}
+
+
 .btn {
   background-color: #777;
 }

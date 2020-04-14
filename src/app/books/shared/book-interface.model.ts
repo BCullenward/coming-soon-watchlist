@@ -49,6 +49,7 @@ export interface IBook {
 }
 
 export interface IAccessInfo {
+  id?: string,
   country?: string,
   viewability?: string,
   embeddable?: boolean,
@@ -67,8 +68,8 @@ export interface IAccessInfo {
   quoteSharingAllowed?: boolean
 }
 
-
 export interface ISaleInfo {
+  id?: string,
   country?: string,
   saleability?: string,
   isEbook?: boolean,
@@ -85,6 +86,7 @@ export interface ISaleInfo {
 }
 
 export interface IOffers {
+  id?: string,
   finskyOfferType?: number,
   listPrice?: {
     amountInMicros?: number,
@@ -98,12 +100,14 @@ export interface IOffers {
 }
 
 export interface IVolumeSeries {
+  id?: string,
   seriesId?: string,
   seriesBookType?: string,
   orderNumber?: number
 }
 
 export interface IIndustryIdentifiers {
+  id?: string,
   type: string,
   identifier: string
 }
